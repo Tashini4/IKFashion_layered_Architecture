@@ -1,4 +1,4 @@
-package lk.Ijse.FinalProject.BO.Custom;
+package lk.Ijse.FinalProject.BO.custom;
 
 import lk.Ijse.FinalProject.dto.InventoryDTO;
 

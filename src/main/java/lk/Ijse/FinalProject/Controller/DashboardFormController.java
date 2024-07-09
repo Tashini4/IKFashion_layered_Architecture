@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.FinalProject.dao.Custom.OrderDAO;
 import lk.Ijse.FinalProject.dao.Custom.impl.OrderDAOImpl;
 import lk.Ijse.FinalProject.db.DbConnection;
 
@@ -58,7 +59,7 @@ public class DashboardFormController {
 
     @FXML
     private TextField txtSearch;
-    OrderDAOImpl orderDAOImpl = new OrderDAOImpl();
+    OrderDAO orderDAO = new OrderDAOImpl();
 
     public void initialize(){
         try{
@@ -85,7 +86,7 @@ public class DashboardFormController {
     private void addValueToOrderChart() {
 
         try {
-            Map<String, Integer> orderCounts = orderDAOImpl.GetDailyOrderCounts();
+            Map<String, Integer> orderCounts = orderDAO.GetDailyOrderCounts();
             XYChart.Series<String, Number> series = new XYChart.Series<>();
             for (Map.Entry<String, Integer> entry : orderCounts.entrySet()) {
                 series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
@@ -93,11 +94,13 @@ public class DashboardFormController {
             ChartOrder.getData().add(series);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
     private void addValueToTotalIncomeChart() {
         try {
-            Map<String, Integer> incomeCounts = orderDAOImpl.GetDailyIncome(); // Assuming this method exists
+            Map<String, Integer> incomeCounts = orderDAO.GetDailyIncome(); // Assuming this method exists
             XYChart.Series<String, Number> series = new XYChart.Series<>();
             for (Map.Entry<String, Integer> entry : incomeCounts.entrySet()) {
                 series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
@@ -105,6 +108,8 @@ public class DashboardFormController {
             ChartTotalIncome.getData().add(series);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -3,6 +3,7 @@ package lk.Ijse.FinalProject.dao.Custom.impl;
 import lk.Ijse.FinalProject.dao.Custom.CustomerDAO;
 import lk.Ijse.FinalProject.dao.SQLUtil;
 import lk.Ijse.FinalProject.dto.CustomerDTO;
+import lk.Ijse.FinalProject.entity.Customer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -75,5 +76,13 @@ public class CustomerDAOImpl implements CustomerDAO {
         return 0;
 
     }
+    public Customer searchById1(String id) throws SQLException, ClassNotFoundException {
+        ResultSet rst = SQLUtil.execute("SELECT * FROM customers WHERE customerId = ? " ,id);
+         rst.next();
+            return new Customer(id + "",rst.getString("Name"), rst.getString("Email"), rst.getString("Contact"),
+                    rst.getString("Address"));
+        }
+    }
 
-}
+
+

@@ -17,7 +17,7 @@ public class DAOFactory {
     public SuperDAO getDAO(DAOTypes types){
         switch (types){
             case CUSTOMER :
-                return  new CustomerDAOImpl();
+               // return  new CustomerDAOImpl();
         }
     }
 

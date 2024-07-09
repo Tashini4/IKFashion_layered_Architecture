@@ -13,9 +13,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.Ijse.FinalProject.dao.impl.SupplierDAOImpl;
+
+import lk.Ijse.FinalProject.dao.Custom.impl.SupplierDAOImpl;
 import lk.Ijse.FinalProject.dto.SupplierDTO;
-import lk.Ijse.FinalProject.view.tm.SupplierTM;
+import lk.Ijse.FinalProject.tm.SupplierTM;
+//import lk.Ijse.FinalProject.view.tm.SupplierTM;
 
 import java.io.IOException;
 import java.sql.SQLException;

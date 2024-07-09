@@ -25,6 +25,9 @@ import lk.Ijse.FinalProject.dao.Custom.impl.OrderDAOImpl;
 import lk.Ijse.FinalProject.dto.OrderDTO;
 import lk.Ijse.FinalProject.dto.OrderDetailsDTO;
 import lk.Ijse.FinalProject.dto.PaymentDTO;
+import lk.Ijse.FinalProject.dto.PlaceOrderDTO;
+import lk.Ijse.FinalProject.entity.Customer;
+import lk.Ijse.FinalProject.entity.Item;
 import lk.Ijse.FinalProject.tm.CartTM;
 import lk.Ijse.FinalProject.tm.OrderTM;
 import net.sf.jasperreports.engine.*;
@@ -133,6 +136,8 @@ public class OrderFormController {
     private double discount;
 
     OrderDAOImpl orderDAO = new OrderDAOImpl();
+    CustomerBO customerBO = new CustomerBOImpl() ;
+    ItemBO itemBO = new ItemBOImpl();
 
     public void initialize() {
         getCurrentOrderId();
@@ -215,7 +220,6 @@ public class OrderFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            CustomerBO customerBO = new CustomerBOImpl() ;
             List<String> idList =  customerBO.getIds();
 
             for (String id : idList){
@@ -232,7 +236,7 @@ public class OrderFormController {
     private void getItemIds() {
         ObservableList<String>  obList = FXCollections.observableArrayList();
         try {
-            ItemBO itemBO = new ItemBOImpl();
+
             List<String> idList =  itemBO.getItemIds();
 
             for (String id : idList){
@@ -380,8 +384,8 @@ public class OrderFormController {
             );
             odList.add(od);
         }
-        Payment payment = new Payment(paymentId,amount,date);
-        PlaceOrder po = new PlaceOrder(order,odList,payment);
+        PaymentDTO payment = new PaymentDTO(paymentId,amount,date);
+        PlaceOrderDTO po = new PlaceOrderDTO(order,odList,payment);
 
         boolean isPlaced = PlaceOrderRepo.placeOrder(po);
 
@@ -422,6 +426,8 @@ public class OrderFormController {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -443,11 +449,17 @@ public class OrderFormController {
     void cmbCustomerIdOnAction(ActionEvent event) {
         String id = cmbCustomerId.getValue();
         try {
-            Customer customer = CustomerRepo.searchById(id);
+            Customer customer = customerBO.searchById1(id);
+            if(customer != null){
+                lblCustomerName.setText(customer.getCustomerName());
+            }else {
 
-            lblCustomerName.setText(customer.getCustomerName());
+                lblCustomerName.setText("Customer not Found");
+            }
 
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -456,12 +468,17 @@ public class OrderFormController {
     void cmbItemIdOnAction(ActionEvent event) {
         String id = String.valueOf(cmbItemId.getValue());
         try {
-            Item item = ItemRepo.searchById(id);
+            Item item = itemBO.searchById1(id);
+            if (item != null) {
+                lblDescription.setText(item.getDescription());
+                lblUnitPrice.setText(String.valueOf(item.getPrice()));
+                lblQtyOnHand.setText(String.valueOf(item.getQtyOnHand()));
 
-            lblDescription.setText(item.getDescription());
-            lblUnitPrice.setText(String.valueOf(item.getPrice()));
-            lblQtyOnHand.setText(String.valueOf(item.getQtyOnHand()));
-
+            }else {
+                lblDescription.setText("not Found");
+                lblUnitPrice.setText("not found");
+                lblQtyOnHand.setText("not Found");
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

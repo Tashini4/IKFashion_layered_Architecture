@@ -5,6 +5,7 @@ import lk.Ijse.FinalProject.dao.Custom.CustomerDAO;
 import lk.Ijse.FinalProject.dao.Custom.impl.CustomerDAOImpl;
 import lk.Ijse.FinalProject.dao.SQLUtil;
 import lk.Ijse.FinalProject.dto.CustomerDTO;
+import lk.Ijse.FinalProject.entity.Customer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,6 +46,10 @@ public class CustomerBOImpl implements CustomerBO {
     public int getCustomer() throws SQLException, ClassNotFoundException {
        return customerDAO.getCustomer();
 
+    }
+    @Override
+   public Customer searchById1(String id) throws SQLException, ClassNotFoundException {
+        return customerDAO.searchById1(id);
     }
 
 }

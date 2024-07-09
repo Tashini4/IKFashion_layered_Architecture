@@ -1,5 +1,7 @@
 package lk.Ijse.FinalProject.dao.Custom.impl;
 
+import lk.Ijse.FinalProject.dao.Custom.OrderDAO;
+import lk.Ijse.FinalProject.dao.SQLUtil;
 import lk.Ijse.FinalProject.db.DbConnection;
 
 import java.sql.PreparedStatement;
@@ -8,14 +10,15 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OrderDAOImpl {
-    public static Map<String, Integer> GetDailyOrderCounts() throws SQLException {
-        String sql = "SELECT orderDate, COUNT(OrderId) AS orderCount FROM orders GROUP BY orderDate ";
+public class OrderDAOImpl implements OrderDAO {
+    @Override
+    public  Map<String, Integer> GetDailyOrderCounts() throws SQLException, ClassNotFoundException {
+        //String sql = "SELECT orderDate, COUNT(OrderId) AS orderCount FROM orders GROUP BY orderDate ";
         Map<String, Integer> orderDetails = new HashMap<>();
 
-        PreparedStatement pvsm = DbConnection.getConnection().prepareStatement(sql);
+      //  PreparedStatement pvsm = DbConnection.getConnection().prepareStatement(sql);
 
-        ResultSet resultSet = pvsm.executeQuery();
+        ResultSet resultSet = SQLUtil.execute("SELECT orderDate, COUNT(OrderId) AS orderCount FROM orders GROUP BY orderDate ");
 
         while (resultSet.next()) {
 
@@ -27,13 +30,13 @@ public class OrderDAOImpl {
 
         return orderDetails;
     }
-
-    public static Map<String, Integer> GetDailyIncome() throws SQLException {
-        String sql = "SELECT orderDate, SUM(orderId) AS totalIncome FROM orders GROUP BY orderDate";
+@Override
+    public  Map<String, Integer> GetDailyIncome() throws SQLException, ClassNotFoundException {
+       // String sql = "SELECT orderDate, SUM(orderId) AS totalIncome FROM orders GROUP BY orderDate";
         Map<String, Integer> orderDetails = new HashMap<>();
 
-        PreparedStatement pvsm = DbConnection.getConnection().prepareStatement(sql);
-        ResultSet resultSet = pvsm.executeQuery();
+       // PreparedStatement pvsm = DbConnection.getConnection().prepareStatement(sql);
+        ResultSet resultSet = SQLUtil.execute("SELECT orderDate, SUM(orderId) AS totalIncome FROM orders GROUP BY orderDate");
 
         while (resultSet.next()) {
             orderDetails.put(
@@ -44,12 +47,29 @@ public class OrderDAOImpl {
 
         return orderDetails;
     }
-
-    public String getCurrentId() {
+@Override
+    public String getCurrentId() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = SQLUtil.execute("SELECT MAX(CAST(SUBSTRING(orderId, 2) AS UNSIGNED)) AS HighestOrderId FROM orders");
+        if (resultSet.next()) {
+            String orderId = resultSet.getString(1);
+            return orderId;
+        }
+        return null;
     }
+@Override
+    public String getPayCurrentId() throws SQLException, ClassNotFoundException {
+        /*String sql = "SELECT paymentId FROM payments ORDER BY paymentId LIMIT 1";
+        PreparedStatement pvsm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);*/
 
-    public String getPayCurrentId() {
+        ResultSet resultSet = SQLUtil.execute( "SELECT paymentId FROM payments ORDER BY paymentId LIMIT 1");
+        if (resultSet.next()) {
+            String paymentId = resultSet.getString(1);
+            return paymentId;
+        }
+        return null;
     }
 }
+
 
 

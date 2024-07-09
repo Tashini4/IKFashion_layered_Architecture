@@ -1,6 +1,7 @@
 package lk.Ijse.FinalProject.BO.custom;
 
 import lk.Ijse.FinalProject.dto.ItemDTO;
+import lk.Ijse.FinalProject.entity.Item;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,4 +19,6 @@ public interface ItemBO {
     public ItemDTO searchByItemId(String itemId) throws SQLException, ClassNotFoundException ;
 
     public List<String> getItemIds() throws SQLException, ClassNotFoundException ;
+
+    Item searchById1(String id);
 }

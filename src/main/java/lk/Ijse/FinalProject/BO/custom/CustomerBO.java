@@ -1,6 +1,7 @@
 package lk.Ijse.FinalProject.BO.custom;
 
 import lk.Ijse.FinalProject.dto.CustomerDTO;
+import lk.Ijse.FinalProject.entity.Customer;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -20,6 +21,8 @@ public interface CustomerBO {
     public List<String> getIds() throws SQLException, ClassNotFoundException;
 
     public int getCustomer() throws SQLException, ClassNotFoundException ;
-    }
+
+    Customer searchById1(String id) throws SQLException, ClassNotFoundException;
+}
 
 
