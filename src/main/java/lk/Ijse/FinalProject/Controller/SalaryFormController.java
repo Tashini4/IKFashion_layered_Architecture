@@ -11,13 +11,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.Custom.EmployeeBO;
-import lk.Ijse.FinalProject.BO.Custom.SalaryBO;
+/*import lk.Ijse.FinalProject.BO.Custom.SalaryBO;
 import lk.Ijse.FinalProject.BO.Custom.impl.EmployeeBOImpl;
-import lk.Ijse.FinalProject.BO.Custom.impl.SalaryBOImpl;
+import lk.Ijse.FinalProject.BO.Custom.impl.SalaryBOImpl;*/
+import lk.Ijse.FinalProject.BO.custom.SalaryBO;
 import lk.Ijse.FinalProject.dto.EmployeeDTO;
 import lk.Ijse.FinalProject.dto.SalaryDTO;
-import lk.Ijse.FinalProject.view.tm.SalaryTM;
+import lk.Ijse.FinalProject.tm.SalaryTM;
+//import lk.Ijse.FinalProject.view.tm.SalaryTM;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -64,8 +67,8 @@ public class SalaryFormController {
     @FXML
     private TextField txtSalaryId;
 
-   SalaryBO salaryBO =  new SalaryBOImpl();
-   EmployeeBO employeeBO = new EmployeeBOImpl();
+   SalaryBO salaryBO = (SalaryBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.SALARY);
+   EmployeeBO employeeBO = (EmployeeBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.EMPLOYEE);
 
     public void initialize(){
         loadAllSalary();

@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 //import lk.Ijse.FinalProject.BO.Custom.impl.CustomerBOImpl;
+import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.custom.CustomerBO;
 import lk.Ijse.FinalProject.BO.custom.impl.CustomerBOImpl;
 import lk.Ijse.FinalProject.dao.Custom.impl.CustomerDAOImpl;
@@ -66,7 +67,7 @@ public class CustomerFormController {
     private TextField txtName;
 
 
-   CustomerBO customerBO = new CustomerBOImpl();
+   CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.CUSTOMER);
 
     public void initialize() {
         setCellValueFactory();

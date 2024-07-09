@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.Custom.EmployeeBO;
 //import lk.Ijse.FinalProject.BO.Custom.impl.EmployeeBOImpl;
 import lk.Ijse.FinalProject.BO.custom.impl.EmployeeBOImpl;
@@ -80,7 +81,7 @@ public class EmployeeFormController {
 
     @FXML
     private TextField txtName;
-    EmployeeBO employeeBO = new EmployeeBOImpl();
+    EmployeeBO employeeBO = (EmployeeBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.EMPLOYEE);
 
     public void initialize(){
         setCellValueFactory();

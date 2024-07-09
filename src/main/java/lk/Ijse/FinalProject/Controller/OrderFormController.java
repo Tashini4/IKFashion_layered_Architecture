@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 //import lk.Ijse.FinalProject.view.tm.CartTM;
+import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.custom.CustomerBO;
 import lk.Ijse.FinalProject.BO.custom.ItemBO;
 import lk.Ijse.FinalProject.BO.custom.impl.CustomerBOImpl;
@@ -136,8 +137,8 @@ public class OrderFormController {
     private double discount;
 
     OrderDAOImpl orderDAO = new OrderDAOImpl();
-    CustomerBO customerBO = new CustomerBOImpl() ;
-    ItemBO itemBO = new ItemBOImpl();
+    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.CUSTOMER);
+    ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ITEM);
 
     public void initialize() {
         getCurrentOrderId();

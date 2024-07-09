@@ -15,9 +15,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.Ijse.FinalProject.BO.Custom.RegisterBO;
-import lk.Ijse.FinalProject.BO.Custom.impl.RegisterBOImpl;
+//import lk.Ijse.FinalProject.BO.Custom.impl.RegisterBOImpl;
+import lk.Ijse.FinalProject.BO.custom.impl.RegisterBOImpl;
 import lk.Ijse.FinalProject.dto.RegisterDTO;
-import lk.Ijse.FinalProject.view.tm.RegisterTM;
+import lk.Ijse.FinalProject.entity.Register;
+import lk.Ijse.FinalProject.tm.RegisterTM;
+import lk.Ijse.FinalProject.tm.RegisterTM;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -84,8 +87,8 @@ public class RegisterFormController {
         ObservableList<RegisterTM> obList = FXCollections.observableArrayList();
 
         try {
-            List<RegisterDTO> registerList = registerBO.getAllRegister();
-        for (RegisterDTO register : registerList) {
+            List<Register> registerList = registerBO.getAllRegister();
+        for (Register register : registerList) {
                 RegisterTM tm = new RegisterTM(
                         register.getRegisterId(),
                         register.getRegiterName(),

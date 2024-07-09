@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 //import lk.Ijse.FinalProject.BO.Custom.ItemBO;
 //import lk.Ijse.FinalProject.BO.Custom.impl.InventoryBOImpl;
 //import lk.Ijse.FinalProject.BO.Custom.impl.ItemBOImpl;
+import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.custom.InventoryBO;
 import lk.Ijse.FinalProject.BO.custom.ItemBO;
 import lk.Ijse.FinalProject.BO.custom.impl.InventoryBOImpl;
@@ -79,7 +80,7 @@ public class ItemFormController {
     private TextField txtQtyOnHand;
 
     ItemBO itemBO = new ItemBOImpl();
-    InventoryBO inventoryBO = new InventoryBOImpl();
+    InventoryBO inventoryBO = (InventoryBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.INVENTORY);
 
     public void initialize(){
         setCellValueFactory();

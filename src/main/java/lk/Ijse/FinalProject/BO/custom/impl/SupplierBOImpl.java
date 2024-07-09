@@ -1,4 +1,4 @@
-package lk.Ijse.FinalProject.BO.Custom.impl;
+package lk.Ijse.FinalProject.BO.custom.impl;
 
 public class SupplierBOImpl {
 }

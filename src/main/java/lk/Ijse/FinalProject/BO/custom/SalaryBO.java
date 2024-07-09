@@ -1,6 +1,7 @@
-package lk.Ijse.FinalProject.BO.Custom;
+package lk.Ijse.FinalProject.BO.custom;
 
 import lk.Ijse.FinalProject.dto.SalaryDTO;
+import lk.Ijse.FinalProject.entity.Salary;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -10,8 +11,8 @@ public interface SalaryBO {
 
     public boolean saveSalary(SalaryDTO salaryDTO) throws SQLException, ClassNotFoundException;
 
-    public List<SalaryDTO> getAllSalary() throws SQLException, ClassNotFoundException ;
+    public List<Salary> getAllSalary() throws SQLException, ClassNotFoundException ;
 
 
-    public SalaryDTO searchBySalaryId(String id) throws SQLException, ClassNotFoundException ;
+    public Salary searchBySalaryId(String id) throws SQLException, ClassNotFoundException ;
 }
