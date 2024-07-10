@@ -135,7 +135,7 @@ public class OrderFormController {
     private ObservableList<CartTM> obList = FXCollections.observableArrayList();
     private double discount;
 
-    OrderDAOImpl orderDAO = new OrderDAOImpl();
+    OrderDAOImpl orderDAO = (OrderDAOImpl) BOFactory.getBoFactory().getBO(BOFactory.BOType.ORDER);
     CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.CUSTOMER);
     ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ITEM);
 
