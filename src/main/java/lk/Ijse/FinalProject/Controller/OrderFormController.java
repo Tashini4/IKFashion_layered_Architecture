@@ -19,10 +19,10 @@ import javafx.stage.Stage;
 import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.custom.CustomerBO;
 import lk.Ijse.FinalProject.BO.custom.ItemBO;
-import lk.Ijse.FinalProject.BO.custom.impl.CustomerBOImpl;
-import lk.Ijse.FinalProject.BO.custom.impl.ItemBOImpl;
-import lk.Ijse.FinalProject.dao.Custom.OrderDAO;
+import lk.Ijse.FinalProject.dao.Custom.PaymentDAO;
 import lk.Ijse.FinalProject.dao.Custom.impl.OrderDAOImpl;
+import lk.Ijse.FinalProject.dao.Custom.impl.PaymentDAOImpl;
+import lk.Ijse.FinalProject.db.DbConnection;
 import lk.Ijse.FinalProject.dto.OrderDTO;
 import lk.Ijse.FinalProject.dto.OrderDetailsDTO;
 import lk.Ijse.FinalProject.dto.PaymentDTO;
@@ -30,7 +30,6 @@ import lk.Ijse.FinalProject.dto.PlaceOrderDTO;
 import lk.Ijse.FinalProject.entity.Customer;
 import lk.Ijse.FinalProject.entity.Item;
 import lk.Ijse.FinalProject.tm.CartTM;
-import lk.Ijse.FinalProject.tm.OrderTM;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -139,6 +138,10 @@ public class OrderFormController {
     OrderDAOImpl orderDAO = new OrderDAOImpl();
     CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.CUSTOMER);
     ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ITEM);
+
+    PaymentDAO paymentDAO = new PaymentDAOImpl();
+
+
 
     public void initialize() {
         getCurrentOrderId();
@@ -329,7 +332,7 @@ public class OrderFormController {
     void btnBackOnAction(ActionEvent event) throws IOException {
         Button btn = (Button) event.getSource();
         Stage stage = (Stage) btn.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/stockForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboardForm.fxml"));
         Parent rootNode = loader.load();
 
         Scene scene = new Scene(rootNode);
@@ -388,7 +391,8 @@ public class OrderFormController {
         PaymentDTO payment = new PaymentDTO(paymentId,amount,date);
         PlaceOrderDTO po = new PlaceOrderDTO(order,odList,payment);
 
-        boolean isPlaced = PlaceOrderRepo.placeOrder(po);
+
+        boolean isPlaced = placeOrder.placeOrder(po);
 
         if (isPlaced){
             obList.clear();
@@ -511,7 +515,7 @@ public class OrderFormController {
     @FXML
     void btnPrintBillOnAction(ActionEvent event) throws JRException, SQLException {
 
-            JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/Report.jrxml");
+          /*  JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/Report.jrxml");
 
             // Create and set the query
             JRDesignQuery jrDesignQuery = new JRDesignQuery();
@@ -530,14 +534,15 @@ public class OrderFormController {
             Map<Double, Object> discout= new HashMap<>();
             double discount = Double.parseDouble(txtDiscount.getText());
             // Fill the report
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DbConnection.getInstance().getConnection());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DbConnection.getDbConnection().getConnection);
 
             // View the report
-            JasperViewer.viewReport(jasperPrint, false);
+            JasperViewer.viewReport(jasperPrint, false);*/
         }
         @FXML
     void txtQtyOnKeyReleased(KeyEvent event) {
-        CustomerRegex.setTextColor(CustomerTextField.NUMBER,txtQty);
+
+        //CustomerRegex.setTextColor(CustomerTextField.NUMBER,txtQty);
     }
 
 

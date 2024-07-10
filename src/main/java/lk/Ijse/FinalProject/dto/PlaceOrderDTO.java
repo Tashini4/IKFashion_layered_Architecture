@@ -14,4 +14,6 @@ public class PlaceOrderDTO {
     private Order order;
     private List<OrderDetailsDTO> odList;
     private PaymentDTO payment;
+
+
 }

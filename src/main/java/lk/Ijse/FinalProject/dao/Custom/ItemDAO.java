@@ -2,6 +2,7 @@ package lk.Ijse.FinalProject.dao.Custom;
 
 import lk.Ijse.FinalProject.dao.SQLUtil;
 import lk.Ijse.FinalProject.dto.ItemDTO;
+import lk.Ijse.FinalProject.dto.OrderDetailsDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,4 +18,8 @@ public interface ItemDAO {
 
     public ItemDTO searchById(String itemId) throws SQLException, ClassNotFoundException;
     public List<String> getIds() throws SQLException, ClassNotFoundException ;
+
+    public  boolean update1(List<OrderDetailsDTO> odList) throws SQLException, ClassNotFoundException;
+
+
 }

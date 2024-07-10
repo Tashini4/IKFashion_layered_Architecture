@@ -79,7 +79,7 @@ public class ItemFormController {
     @FXML
     private TextField txtQtyOnHand;
 
-    ItemBO itemBO = new ItemBOImpl();
+    ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ITEM);
     InventoryBO inventoryBO = (InventoryBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.INVENTORY);
 
     public void initialize(){
@@ -284,6 +284,8 @@ public class ItemFormController {
         } else {
             new Alert(Alert.AlertType.INFORMATION, "item not found!").show();
         }
+
+
     }
    /* @FXML
     void txtIdOnKeyReleased(KeyEvent event) {

@@ -5,8 +5,6 @@ import lk.Ijse.FinalProject.dao.SQLUtil;
 import lk.Ijse.FinalProject.dto.CustomerDTO;
 import lk.Ijse.FinalProject.entity.Customer;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,15 +29,18 @@ public class CustomerDAOImpl implements CustomerDAO {
         }
         return customerlist;
     }
+
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("DELETE FROM customers WHERE customerId = ?", id);
     }
+
     @Override
     public boolean save(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("INSERT INTO customers VALUES(?, ?, ?, ? , ?)", customerDTO.getCustomerId(), customerDTO.getCustomerName(),
                 customerDTO.getCustomerEmail(), customerDTO.getCustomerContact(), customerDTO.getCustomerAddress());
     }
+
     @Override
     public boolean update(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException {
 
@@ -54,6 +55,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         return new CustomerDTO(id + "", rst.getString("Name"), rst.getString("Email"), rst.getString("Contact"),
                 rst.getString("Address"));
     }
+
     @Override
     public List<String> getIds() throws SQLException, ClassNotFoundException {
 
@@ -66,6 +68,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         }
         return idList;
     }
+
     @Override
     public int getCustomer() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT COUNT(*) AS customer_count FROM customers");
@@ -76,13 +79,30 @@ public class CustomerDAOImpl implements CustomerDAO {
         return 0;
 
     }
+
     public Customer searchById1(String id) throws SQLException, ClassNotFoundException {
-        ResultSet rst = SQLUtil.execute("SELECT * FROM customers WHERE customerId = ? " ,id);
-         rst.next();
-            return new Customer(id + "",rst.getString("Name"), rst.getString("Email"), rst.getString("Contact"),
-                    rst.getString("Address"));
-        }
+        ResultSet rst = SQLUtil.execute("SELECT * FROM customers WHERE customerId = ? ", id);
+        rst.next();
+        return new Customer(id + "", rst.getString("Name"), rst.getString("Email"), rst.getString("Contact"),
+                rst.getString("Address"));
     }
+
+    /*@Override
+    public String getCurruntId() throws SQLException, ClassNotFoundException {
+        return null;
+    }*/
+
+    @Override
+    public String getCurrentId() throws SQLException, ClassNotFoundException {
+        ResultSet rst = SQLUtil.execute("SELECT Customer_id FROM Customer ORDER BY Customer_id DESC LIMIT 1");
+        if (rst.next()) {
+            String customerId = rst.getString("1");
+            return customerId;
+        }
+        return null;
+    }
+}
+
 
 
 

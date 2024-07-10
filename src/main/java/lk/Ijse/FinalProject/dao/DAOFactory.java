@@ -1,6 +1,6 @@
 package lk.Ijse.FinalProject.dao;
 
-import lk.Ijse.FinalProject.dao.Custom.InventoryDAO;
+
 import lk.Ijse.FinalProject.dao.Custom.impl.*;
 
 public class DAOFactory {
@@ -27,7 +27,7 @@ public class DAOFactory {
             case ORDER:
                 return new OrderDAOImpl();
             case INVENTORY:
-                return new InventoryDAO();
+                return new InventoryDAOImpl();
             case REGISTTER:
                 return new RegisterDAOImpl();
             case SALARY:
@@ -35,7 +35,7 @@ public class DAOFactory {
             case SUPPLIER:
                 return new SalaryDAOImpl();
             default:
-                return null
+                return null;
         }
     }
 }
@@ -47,5 +47,5 @@ public class DAOFactory {
 
 
 
-    }
+
 

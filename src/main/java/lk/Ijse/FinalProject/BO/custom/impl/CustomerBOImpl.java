@@ -51,6 +51,10 @@ public class CustomerBOImpl implements CustomerBO {
    public Customer searchById1(String id) throws SQLException, ClassNotFoundException {
         return customerDAO.searchById1(id);
     }
+    @Override
+   public String getCurrentId() throws SQLException, ClassNotFoundException {
+        return customerDAO.getCurruntId();
+   }
 
 }
 

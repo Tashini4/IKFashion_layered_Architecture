@@ -133,6 +133,7 @@ public class CustomerFormController {
     }
 
     private void clearFields() {
+        getCurrentCustomerId();
         txtId.setText("");
         txtName.setText("");
         txtEmail.setText("");
@@ -164,10 +165,11 @@ public class CustomerFormController {
         try {
 
             boolean isSaved = customerBO.saveCustomer(new CustomerDTO(id, name, email, contact, address));
-            loadAllCustomer();
-            clearFields();
             if (isSaved) {
+                getCurrentCustomerId();
                 new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
+                loadAllCustomer();
+                clearFields();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -189,6 +191,8 @@ public class CustomerFormController {
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
                 loadAllCustomer();
+                clearFields();
+                getCurrentCustomerId();
             }
         } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -198,8 +202,9 @@ public class CustomerFormController {
     @FXML
     void txtSearchOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String id = txtId.getText();
+    try {
 
-        CustomerDTO customer =customerBO.searchByCustomerId(id);
+        CustomerDTO customer = customerBO.searchByCustomerId(id);
         if (customer != null) {
             txtId.setText(customer.getCustomerId());
             txtName.setText(customer.getCustomerName());
@@ -209,7 +214,30 @@ public class CustomerFormController {
         } else {
             new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
         }
+    }catch (SQLException e){
+        new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+    }
 
+    }
+    private void getCurrentCustomerId(){
+        try {
+            String currentId = customerBO.getCurrentId();
+            String nextCustomerId = generateNextCustomerId(currentId);
+            txtId.setText(nextCustomerId);
+        }catch (SQLException | ClassNotFoundException e){
+            throw new RuntimeException(e);
+
+        }
+    }
+
+    private String generateNextCustomerId(String currentId) {
+        if (currentId != null){
+            String[] split = currentId.split("C");
+            int idNum = Integer.parseInt(split[1]);
+            idNum++;
+            return "C" + String.format("%03d" , idNum);
+        }
+        return "C001";
     }
 
     public void txtNameOnKeyReleased(KeyEvent keyEvent) {

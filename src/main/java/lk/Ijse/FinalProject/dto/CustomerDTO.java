@@ -1,6 +1,6 @@
 package lk.Ijse.FinalProject.dto;
 
-import lk.Ijse.FinalProject.view.tm.CustomerTM;
+//import lk.Ijse.FinalProject.view.tm.CustomerTM;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

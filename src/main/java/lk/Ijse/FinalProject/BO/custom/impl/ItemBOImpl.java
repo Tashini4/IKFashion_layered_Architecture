@@ -1,6 +1,7 @@
 package lk.Ijse.FinalProject.BO.custom.impl;
 
 //import lk.Ijse.FinalProject.BO.Custom.ItemBO;
+import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.custom.ItemBO;
 import lk.Ijse.FinalProject.dao.Custom.ItemDAO;
 //import lk.Ijse.FinalProject.dao.impl.ItemDAOImpl;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemBOImpl implements ItemBO {
-    ItemDAO itemDAO = new ItemDAOImpl();
+    ItemDAO itemDAO = (ItemDAO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ITEM);
         @Override
         public boolean saveItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
             return itemDAO.save(itemDTO);

@@ -23,6 +23,8 @@ public interface CustomerBO {
     public int getCustomer() throws SQLException, ClassNotFoundException ;
 
     Customer searchById1(String id) throws SQLException, ClassNotFoundException;
+
+    String getCurrentId() throws SQLException, ClassNotFoundException;
 }
 
 
