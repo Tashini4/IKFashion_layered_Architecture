@@ -14,9 +14,6 @@ import java.util.List;
 
 public interface PaymentDAO extends CrudDAO<Payment> {
     public  boolean save(Payment payment) throws SQLException, ClassNotFoundException ;
-
-    boolean save(PaymentDTO paymentDTO) throws SQLException, ClassNotFoundException;
-
     public  Payment searchById(String id) throws SQLException, ClassNotFoundException;
     public List<Payment> getAll() throws SQLException, ClassNotFoundException ;
     public  List<String> getIds() throws SQLException, ClassNotFoundException ;

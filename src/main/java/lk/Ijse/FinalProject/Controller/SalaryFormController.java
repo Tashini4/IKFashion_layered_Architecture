@@ -176,7 +176,7 @@ public class SalaryFormController {
        // Salary salary = new Salary(salaryId,date,amount,employeeId);
 
         try {
-            boolean Save = salaryBO.saveSalary(new SalaryDTO(salaryId,date,amount,employeeId));
+            boolean Save = salaryBO.saveSalary(new Salary(salaryId,date,amount,employeeId));
             if (Save){
                 new Alert(Alert.AlertType.CONFIRMATION,"Salary saved!").show();
                 loadAllSalary();
@@ -196,10 +196,8 @@ public class SalaryFormController {
         String amount = txtAmount.getText();
         String employeeId = (String) cmbEmployeeId.getValue();
 
-       // Salary salary = new Salary(salaryId,date,amount,employeeId);
-
         try {
-            boolean Update = salaryBO.updateSalary(new SalaryDTO(salaryId,date,amount,employeeId));
+            boolean Update = salaryBO.updateSalary(new Salary(salaryId,date,amount,employeeId));
             if (Update){
                 new Alert(Alert.AlertType.CONFIRMATION,"Salary updated!").show();
                 loadAllSalary();

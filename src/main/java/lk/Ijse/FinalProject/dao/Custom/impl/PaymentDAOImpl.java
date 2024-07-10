@@ -10,15 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentDAOImpl implements PaymentDAO {
-    @Override
-    public boolean save(Payment payment) throws SQLException, ClassNotFoundException {
-        return false;
-    }
 
     @Override
-    public  boolean save(PaymentDTO paymentDTO) throws SQLException, ClassNotFoundException {
+    public  boolean save(Payment payment) throws SQLException, ClassNotFoundException {
 
-        return SQLUtil.execute("INSERT INTO payments VALUES(?,?,?)",paymentDTO.getPaymentId(),paymentDTO.getPaymentAmount(),paymentDTO.getPaymentDate());
+        return SQLUtil.execute("INSERT INTO payments VALUES(?,?,?)",payment.getPaymentId(),payment.getPaymentAmount(),payment.getPaymentDate());
     }
     @Override
     public Payment searchById(String id) throws SQLException, ClassNotFoundException {
@@ -37,10 +33,7 @@ public class PaymentDAOImpl implements PaymentDAO {
         return null;
     }
 
-    @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
-        return false;
-    }
+
 
     @Override
     public  List<Payment> getAll() throws SQLException, ClassNotFoundException {
@@ -58,11 +51,6 @@ public class PaymentDAOImpl implements PaymentDAO {
             paymentList.add(payment);
         }
         return paymentList;
-    }
-
-    @Override
-    public boolean update(Payment customerDTO) throws SQLException, ClassNotFoundException {
-        return false;
     }
 
     @Override

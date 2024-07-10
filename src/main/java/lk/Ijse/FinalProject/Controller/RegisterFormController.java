@@ -155,7 +155,7 @@ public class RegisterFormController {
         //Register register = new Register(registerId, name, position, password);
 
         try {
-            boolean Save = registerBO.saveRegister(new RegisterDTO(registerId,name,position,password));
+            boolean Save = registerBO.saveRegister(new Register(registerId,name,position,password));
             if (Save) {
                 new Alert(Alert.AlertType.CONFIRMATION, " User saved!").show();
                 loadAllCustomers();
@@ -178,7 +178,7 @@ public class RegisterFormController {
         //Register register = new Register(registerId, name, position, password);
 
         try {
-            boolean Update = registerBO.updateRegister(new RegisterDTO(registerId,name,position,password));
+            boolean Update = registerBO.updateRegister(new Register(registerId,name,position,password));
             if (Update) {
                 new Alert(Alert.AlertType.CONFIRMATION, "User updated!").show();
                 loadAllCustomers();

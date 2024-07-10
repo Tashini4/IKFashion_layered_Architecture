@@ -13,7 +13,8 @@ import java.util.List;
 public class SupplierBOImpl implements SupplierBO {
 
     SupplierDAO supplierDAO = (SupplierDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.SUPPLIER);
-    public List<Supplier> getAll() throws SQLException, ClassNotFoundException {
+    @Override
+    public List<Supplier> getAllSupplier() throws SQLException, ClassNotFoundException {
         List<Supplier> allSupplierEntityData = supplierDAO.getAll();
         List<SupplierDTO> allDTOData = new ArrayList<>();
         for (Supplier s : allSupplierEntityData){
@@ -21,18 +22,18 @@ public class SupplierBOImpl implements SupplierBO {
         }
         return allSupplierEntityData;
     }
-
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+@Override
+    public boolean deleteSupplier(String id) throws SQLException, ClassNotFoundException {
        return supplierDAO.delete(id);
 
     }
-
-    public boolean save(Supplier supplier) throws SQLException, ClassNotFoundException {
+@Override
+    public boolean saveSupplier(Supplier supplier) throws SQLException, ClassNotFoundException {
        return supplierDAO.save(supplier);
     }
 
-
-    public boolean update(Supplier supplier) throws SQLException, ClassNotFoundException {
+@Override
+    public boolean updateSupplier(Supplier supplier) throws SQLException, ClassNotFoundException {
       return supplierDAO.update(supplier);
 }
 

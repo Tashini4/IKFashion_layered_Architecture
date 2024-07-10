@@ -14,6 +14,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import lk.Ijse.FinalProject.BO.BOFactory;
+import lk.Ijse.FinalProject.BO.custom.SupplierBO;
 import lk.Ijse.FinalProject.dao.Custom.impl.SupplierDAOImpl;
 import lk.Ijse.FinalProject.dto.SupplierDTO;
 import lk.Ijse.FinalProject.entity.Supplier;
@@ -62,7 +64,7 @@ public class SupplierFormController {
     @FXML
     private TextField txtName;
 
-    SupplierDAOImpl supplierDAO =  new SupplierDAOImpl();
+    SupplierBO supplierBO = (SupplierBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.SUPPLIER);
 
     public void initialize(){
         setCellValueFactory();
@@ -83,7 +85,7 @@ public class SupplierFormController {
         ObservableList<SupplierTM> obList = FXCollections.observableArrayList();
 
         try {
-            List<Supplier> supplierList = supplierDAO.getAll();
+            List<Supplier> supplierList = supplierBO.getAllSupplier();
             for (Supplier supplier : supplierList) {
                 SupplierTM tm = new SupplierTM(
                         supplier.getSupplierId(),
@@ -140,7 +142,7 @@ public class SupplierFormController {
         String id = txtId.getText();
 
         try {
-            boolean Delete = supplierDAO.delete(id);
+            boolean Delete = supplierBO.deleteSupplier(id);
             if(Delete) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier deleted!").show();
                 clearFields();
@@ -163,7 +165,7 @@ public class SupplierFormController {
         //Supplier supplier = new Supplier(id, name, email , address,contact );
 
         try {
-            boolean Save = supplierDAO.save(new Supplier(id,name,email,address,contact));
+            boolean Save = supplierBO.saveSupplier(new Supplier(id,name,email,address,contact));
             if (Save) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier saved!").show();
                 loadAllSupplier();
@@ -185,10 +187,8 @@ public class SupplierFormController {
         String contact = txtContact.getText();
 
 
-        //Supplier supplier = new Supplier(id, name,email,address,contact);
-
         try {
-            boolean Update = supplierDAO.update(new Supplier(id,name,email,address,contact));
+            boolean Update = supplierBO.updateSupplier(new Supplier(id,name,email,address,contact));
             if(Update) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier updated!").show();
                 loadAllSupplier();

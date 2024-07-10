@@ -192,7 +192,7 @@ public class EmployeeFormController {
        // Employee employee = new Employee(id,name,email,contact,address,gender);
 
         try {
-            boolean Save = employeeBO.saveEmployee(new EmployeeDTO(id,name,email,contact,address,gender));
+            boolean Save = employeeBO.saveEmployee(new Employee(id,name,email,contact,address,gender));
             if(Save){
                 new Alert(Alert.AlertType.CONFIRMATION,"employee Saved!").show();
                 loadAllEmployee();
@@ -217,7 +217,7 @@ public class EmployeeFormController {
        // Employee employee = new Employee(id,name,email,contact,address,gender);
 
         try {
-            boolean Update = employeeBO.updateEmployee(new EmployeeDTO(id,name,email,contact,address,gender));
+            boolean Update = employeeBO.updateEmployee(new Employee(id,name,email,contact,address,gender));
             loadAllEmployee();
             clearFields();
             if(Update){
@@ -235,7 +235,7 @@ public class EmployeeFormController {
     void txtSearchOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String id = txtId.getText();
 
-        EmployeeDTO employee = employeeBO.searchByEmployeeId(id);
+        Employee employee = employeeBO.searchByEmployeeId(id);
         if (employee != null) {
             txtId.setText(employee.getEmployeeId());
             txtName.setText(employee.getEmployeeName());

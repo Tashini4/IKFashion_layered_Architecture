@@ -136,7 +136,7 @@ public class CustomerFormController {
     }
 
     private void clearFields() {
-        getCurrentCustomerId();
+
         txtId.setText("");
         txtName.setText("");
         txtEmail.setText("");
@@ -169,7 +169,7 @@ public class CustomerFormController {
             if (isValied()){}
             boolean isSaved = customerBO.saveCustomer(new Customer(id, name, email, contact, address));
             if (isSaved) {
-                getCurrentCustomerId();
+
                 new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
                 loadAllCustomer();
                 clearFields();
@@ -195,7 +195,7 @@ public class CustomerFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
                 loadAllCustomer();
                 clearFields();
-                getCurrentCustomerId();
+
             }
         } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -216,43 +216,24 @@ public class CustomerFormController {
     @FXML
     void txtSearchOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String id = txtId.getText();
-    try {
-
-        Customer customer = customerBO.searchByCustomerId(id);
-        if (customer != null) {
-            txtId.setText(customer.getCustomerId());
-            txtName.setText(customer.getCustomerName());
-            txtEmail.setText(customer.getCustomerEmail());
-            txtContact.setText(customer.getCustomerContact());
-            txtAddress.setText(customer.getCustomerAddress());
-        } else {
-            new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
-        }
-    }catch (SQLException e){
-        new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-    }
-
-    }
-    private void getCurrentCustomerId(){
         try {
-            String currentId = customerBO.getCurrentId();
-            String nextCustomerId = generateNextCustomerId(currentId);
-            txtId.setText(nextCustomerId);
-        }catch (SQLException | ClassNotFoundException e){
-            throw new RuntimeException(e);
 
+            Customer customer = customerBO.searchByCustomerId(id);
+            if (customer != null) {
+                txtId.setText(customer.getCustomerId());
+                txtName.setText(customer.getCustomerName());
+                txtEmail.setText(customer.getCustomerEmail());
+                txtContact.setText(customer.getCustomerContact());
+                txtAddress.setText(customer.getCustomerAddress());
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+
     }
 
-    private String generateNextCustomerId(String currentId) {
-        if (currentId != null){
-            String[] split = currentId.split("C");
-            int idNum = Integer.parseInt(split[1]);
-            idNum++;
-            return "C" + String.format("%03d" , idNum);
-        }
-        return "C001";
-    }
 
     @FXML
     void txtAddressOnKeyReleased(KeyEvent event) {

@@ -14,9 +14,9 @@ public interface RegisterBO extends SuperBO {
     public boolean deleteRegister(String id) throws SQLException, ClassNotFoundException ;
 
 
-    public boolean saveRegister(RegisterDTO registerDTO) throws SQLException, ClassNotFoundException;
+    public boolean saveRegister(Register register) throws SQLException, ClassNotFoundException;
 
-    public boolean updateRegister(RegisterDTO registerDTO) throws SQLException, ClassNotFoundException;
+    public boolean updateRegister(Register register) throws SQLException, ClassNotFoundException;
 
 
     public Register searchByRegisterId(String id) throws SQLException, ClassNotFoundException ;

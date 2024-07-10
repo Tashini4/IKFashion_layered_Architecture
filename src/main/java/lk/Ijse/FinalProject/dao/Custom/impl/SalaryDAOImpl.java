@@ -12,15 +12,16 @@ import java.util.List;
 
 public class SalaryDAOImpl implements SalaryDAO {
     @Override
-    public boolean update(Salary salaryDTO) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("UPDATE salary SET salaryDate = ?, salaryAmount = ? ,employeeId = ? WHERE salaryId = ?", salaryDTO.getSalaryDate(), salaryDTO.getSalaryAmount(),
-                salaryDTO.getEmployeeId(), salaryDTO.getSalaryId());
+    public boolean update(Salary salary) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("UPDATE salary SET salaryDate = ?, salaryAmount = ? ,employeeId = ? WHERE salaryId = ?", salary.getSalaryDate(), salary.getSalaryAmount(),
+                salary.getEmployeeId(), salary.getSalaryId());
 
     }
+
     @Override
-    public boolean save(Salary salaryDTO) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("INSERT INTO salary VALUES (?,?,?,?)", salaryDTO.getSalaryDate(), salaryDTO.getSalaryAmount(),
-                salaryDTO.getEmployeeId());
+    public boolean save(Salary salary) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("INSERT INTO salary VALUES (?,?,?,?)", salary.getSalaryDate(), salary.getSalaryAmount(),
+                salary.getEmployeeId());
     }
     @Override
     public List<Salary> getAll() throws SQLException, ClassNotFoundException {

@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface SupplierBO extends SuperBO {
-    public List<Supplier> getAll() throws SQLException, ClassNotFoundException;
+    public List<Supplier> getAllSupplier() throws SQLException, ClassNotFoundException;
 
-    public boolean delete(String id) throws SQLException, ClassNotFoundException ;
+    public boolean deleteSupplier(String id) throws SQLException, ClassNotFoundException ;
 
-    public boolean save(Supplier supplier) throws SQLException, ClassNotFoundException ;
+    public boolean saveSupplier(Supplier supplier) throws SQLException, ClassNotFoundException ;
 
 
-    public boolean update(Supplier supplier) throws SQLException, ClassNotFoundException ;
+    public boolean updateSupplier(Supplier supplier) throws SQLException, ClassNotFoundException ;
 
 
 

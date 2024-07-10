@@ -175,7 +175,7 @@ public class ItemFormController {
 
 
         try {
-            boolean isAdded = itemBO.saveItem(new  ItemDTO(itemId,description,brand,size,price,qtyOnHand,inventoryId));
+            boolean isAdded = itemBO.saveItem(new  Item(itemId,description,brand,size,price,qtyOnHand,inventoryId));
             if (isAdded){
                 new Alert(Alert.AlertType.CONFIRMATION,"Item added!").show();
                 loadAllItem();
@@ -237,7 +237,7 @@ public class ItemFormController {
 
 
         try {
-            boolean isUpdated = itemBO.updateItem(new  ItemDTO(itemId,description,brand,size,price,qtyOnHand,inventoryId));
+            boolean isUpdated = itemBO.updateItem(new  Item(itemId,description,brand,size,price,qtyOnHand,inventoryId));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "item updated!").show();
                 loadAllItem();

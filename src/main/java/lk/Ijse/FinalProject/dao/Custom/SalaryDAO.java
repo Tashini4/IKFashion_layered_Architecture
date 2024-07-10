@@ -15,4 +15,6 @@ public interface SalaryDAO extends CrudDAO<Salary> {
     boolean update(Salary salary) throws SQLException, ClassNotFoundException;
 
     boolean save(Salary salary) throws SQLException, ClassNotFoundException;
+
+    Salary searchById(String id) throws SQLException,ClassNotFoundException;
 }

@@ -454,7 +454,7 @@ public class OrderFormController {
     void cmbCustomerIdOnAction(ActionEvent event) {
         String id = cmbCustomerId.getValue();
         try {
-            Customer customer = customerBO.searchById1(id);
+            Customer customer = customerBO.searchByCustomerId(id);
             if(customer != null){
                 lblCustomerName.setText(customer.getCustomerName());
             }else {
@@ -473,7 +473,7 @@ public class OrderFormController {
     void cmbItemIdOnAction(ActionEvent event) {
         String id = String.valueOf(cmbItemId.getValue());
         try {
-            Item item = itemBO.searchById1(id);
+            Item item = itemBO.searchByItemId(id);
             if (item != null) {
                 lblDescription.setText(item.getDescription());
                 lblUnitPrice.setText(String.valueOf(item.getPrice()));
@@ -486,6 +486,8 @@ public class OrderFormController {
             }
 
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

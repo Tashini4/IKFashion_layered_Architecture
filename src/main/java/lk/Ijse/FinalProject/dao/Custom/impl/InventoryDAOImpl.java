@@ -32,5 +32,15 @@ public class InventoryDAOImpl implements InventoryDAO {
                 rst.getDouble("CostPrice"),rst.getDouble("SellingPrice"),rst.getString("SupplierId"));
 
     }
+
+    @Override
+    public List<Inventory> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public boolean save(Inventory customerDTO) throws SQLException, ClassNotFoundException {
+        return false;
+    }
 }
 

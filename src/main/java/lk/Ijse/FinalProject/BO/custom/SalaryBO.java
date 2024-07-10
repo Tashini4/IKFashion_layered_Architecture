@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface SalaryBO  extends SuperBO {
-    public boolean updateSalary(SalaryDTO salaryDTO) throws SQLException, ClassNotFoundException ;
+    public boolean updateSalary(Salary salaryDTO) throws SQLException, ClassNotFoundException ;
 
-    public boolean saveSalary(SalaryDTO salaryDTO) throws SQLException, ClassNotFoundException;
+    public boolean saveSalary(Salary salaryDTO) throws SQLException, ClassNotFoundException;
 
     public List<Salary> getAllSalary() throws SQLException, ClassNotFoundException ;
 

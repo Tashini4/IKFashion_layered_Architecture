@@ -13,22 +13,22 @@ import java.util.Map;
 public class OrderBOImpl implements OrderDAO {
     OrderDAO orderDAO = (OrderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER);
 
-
+@Override
     public Map<String, Integer> GetDailyOrderCounts() throws SQLException, ClassNotFoundException {
         return orderDAO.GetDailyOrderCounts();
     }
 
-
+@Override
     public Map<String, Integer> GetDailyIncome() throws SQLException, ClassNotFoundException {
         return orderDAO.GetDailyIncome();
     }
 
-
+@Override
     public String getCurrentId() throws SQLException, ClassNotFoundException {
         return orderDAO.getCurrentId();
     }
 
-
+@Override
     public String getPayCurrentId() throws SQLException, ClassNotFoundException {
         return orderDAO.getPayCurrentId();
 
@@ -40,22 +40,7 @@ public class OrderBOImpl implements OrderDAO {
     }
 
     @Override
-    public boolean save(Order customerDTO) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public boolean update(Order customerDTO) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public Order searchById(String id) throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-    @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean save(Order order) throws SQLException, ClassNotFoundException {
         return false;
     }
 }

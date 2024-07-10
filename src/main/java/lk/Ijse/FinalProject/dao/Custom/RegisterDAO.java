@@ -16,7 +16,7 @@ public interface RegisterDAO extends CrudDAO<Register> {
     public boolean delete(String id) throws SQLException, ClassNotFoundException;
     public boolean save(Register registerD) throws SQLException, ClassNotFoundException;
 
-    public boolean update(RegisterDTO registerDTO) throws SQLException, ClassNotFoundException ;
+    public boolean update(Register register) throws SQLException, ClassNotFoundException ;
 
     public Register searchById(String id) throws SQLException, ClassNotFoundException;
 }

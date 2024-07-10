@@ -38,16 +38,16 @@ public class RegisterDAOImpl implements RegisterDAO {
         return SQLUtil.execute("DELETE FROM register WHERE registerId = ?",id);
     }
     @Override
-    public boolean save(Register registerDTO) throws SQLException, ClassNotFoundException {
+    public boolean save(Register register) throws SQLException, ClassNotFoundException {
 
-        return SQLUtil.execute("INSERT INTO register (registerId, registerName, registerPosition, registerPassword) VALUES(?,?,?,?)",registerDTO.getRegisterId(),
-                registerDTO.getRegiterName(),registerDTO.getRegisterPosition(),registerDTO.getRegisterPosition());
+        return SQLUtil.execute("INSERT INTO register (registerId, registerName, registerPosition, registerPassword) VALUES(?,?,?,?)",register.getRegisterId(),
+                register.getRegiterName(),register.getRegisterPosition(),register.getRegisterPosition());
     }
     @Override
-    public boolean update(Register registerDTO) throws SQLException, ClassNotFoundException {
+    public boolean update(Register register) throws SQLException, ClassNotFoundException {
 
-        return SQLUtil.execute("UPDATE register SET registerName = ?, registerPosition = ?, registerPassword = ? WHERE registerId = ?",registerDTO.getRegisterId(),registerDTO.getRegiterName(),
-                registerDTO.getRegisterPosition(),registerDTO.getRegisterPassword());
+        return SQLUtil.execute("UPDATE register SET registerName = ?, registerPosition = ?, registerPassword = ? WHERE registerId = ?",register.getRegisterId(),register.getRegiterName(),
+                register.getRegisterPosition(),register.getRegisterPassword());
     }
     @Override
     public Register searchById(String id) throws SQLException, ClassNotFoundException {
