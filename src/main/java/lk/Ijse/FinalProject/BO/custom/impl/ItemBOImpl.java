@@ -1,22 +1,22 @@
 package lk.Ijse.FinalProject.BO.custom.impl;
 
 //import lk.Ijse.FinalProject.BO.Custom.ItemBO;
-import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.custom.ItemBO;
 import lk.Ijse.FinalProject.dao.Custom.ItemDAO;
 //import lk.Ijse.FinalProject.dao.impl.ItemDAOImpl;
-import lk.Ijse.FinalProject.dao.Custom.impl.ItemDAOImpl;
+import lk.Ijse.FinalProject.dao.DAOFactory;
 import lk.Ijse.FinalProject.dto.ItemDTO;
+import lk.Ijse.FinalProject.entity.Item;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ItemBOImpl implements ItemBO {
-    ItemDAO itemDAO = (ItemDAO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ITEM);
+    ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
         @Override
-        public boolean saveItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
-            return itemDAO.save(itemDTO);
+        public boolean saveItem(Item item) throws SQLException, ClassNotFoundException {
+            return itemDAO.save(item);
         }
 
         @Override
@@ -35,7 +35,7 @@ public class ItemBOImpl implements ItemBO {
         }
 
         @Override
-        public ItemDTO searchByItemId(String itemId) throws SQLException, ClassNotFoundException {
+        public Item searchByItemId(String itemId) throws SQLException, ClassNotFoundException {
             return itemDAO.searchById(itemId);
         }
 

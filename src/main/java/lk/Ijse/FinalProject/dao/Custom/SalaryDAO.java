@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface SalaryDAO extends CrudDAO<Salary> {
 
-    boolean update(SalaryDTO salaryDTO) throws SQLException, ClassNotFoundException;
+    boolean update(Salary salary) throws SQLException, ClassNotFoundException;
 
-    boolean save(SalaryDTO salaryDTO) throws SQLException, ClassNotFoundException;
+    boolean save(Salary salary) throws SQLException, ClassNotFoundException;
 }

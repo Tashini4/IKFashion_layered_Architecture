@@ -8,21 +8,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-//import lk.Ijse.FinalProject.BO.Custom.InventoryBO;
-//import lk.Ijse.FinalProject.BO.Custom.ItemBO;
-//import lk.Ijse.FinalProject.BO.Custom.impl.InventoryBOImpl;
-//import lk.Ijse.FinalProject.BO.Custom.impl.ItemBOImpl;
 import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.custom.InventoryBO;
 import lk.Ijse.FinalProject.BO.custom.ItemBO;
-import lk.Ijse.FinalProject.BO.custom.impl.InventoryBOImpl;
-import lk.Ijse.FinalProject.BO.custom.impl.ItemBOImpl;
+
+import lk.Ijse.FinalProject.Util.CustomerRegex;
+import lk.Ijse.FinalProject.Util.CustomerTextField;
 import lk.Ijse.FinalProject.dto.InventoryDTO;
 import lk.Ijse.FinalProject.dto.ItemDTO;
 import lk.Ijse.FinalProject.tm.ItemTM;
-//import lk.Ijse.FinalProject.view.tm.ItemTM;
+
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -287,12 +285,12 @@ public class ItemFormController {
 
 
     }
-   /* @FXML
-    void txtIdOnKeyReleased(KeyEvent event) {
+
+    @FXML
+    public void txtIdOnKeyReleased(KeyEvent keyEvent) {
+
         CustomerRegex.setTextColor(CustomerTextField.ID,txtItemId);
-    }*/
-
-
+    }
 }
 
 

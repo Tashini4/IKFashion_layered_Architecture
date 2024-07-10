@@ -6,7 +6,7 @@ import lk.Ijse.FinalProject.entity.Customer;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface CustomerBO {
+public interface CustomerBO extends SalaryBO{
 
     public List<CustomerDTO> getAllCustomer() throws SQLException, ClassNotFoundException;
 

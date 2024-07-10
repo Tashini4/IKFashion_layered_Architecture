@@ -14,9 +14,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.Ijse.FinalProject.BO.Custom.RegisterBO;
+//import lk.Ijse.FinalProject.BO.Custom.RegisterBO;
 //import lk.Ijse.FinalProject.BO.Custom.impl.RegisterBOImpl;
+import lk.Ijse.FinalProject.BO.custom.RegisterBO;
 import lk.Ijse.FinalProject.BO.custom.impl.RegisterBOImpl;
+import lk.Ijse.FinalProject.Util.CustomerRegex;
+import lk.Ijse.FinalProject.Util.CustomerTextField;
 import lk.Ijse.FinalProject.dto.RegisterDTO;
 import lk.Ijse.FinalProject.entity.Register;
 import lk.Ijse.FinalProject.tm.RegisterTM;
@@ -191,7 +194,7 @@ public class RegisterFormController {
     void txtSearchOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String id = txtRegisterId.getText();
 
-        RegisterDTO register = registerBO.searchByRegisterId(id);
+        Register register = registerBO.searchByRegisterId(id);
         if (register != null) {
             txtRegisterId.setText(register.getRegisterId());
             txtName.setText(register.getRegiterName());
@@ -205,16 +208,16 @@ public class RegisterFormController {
     @FXML
     void txtIdOnKeyReleased(KeyEvent event) {
 
-       // CustomerRegex.setTextColor(CustomerTextField.ID,txtRegisterId);
+        CustomerRegex.setTextColor(CustomerTextField.ID,txtRegisterId);
     }
     @FXML
     void txtNameOnKeyReleased(KeyEvent event) {
-        //CustomerRegex.setTextColor(CustomerTextField.NAME,txtName);
+        CustomerRegex.setTextColor(CustomerTextField.NAME,txtName);
 
     }
     @FXML
     void txtPasswordOnKeyReleased(KeyEvent event){
-       // CustomerRegex.setTextColor(CustomerTextField.PASSWORD,txtPassword);
+        CustomerRegex.setTextColor(CustomerTextField.PASSWORD,txtPassword);
 }
 }
 

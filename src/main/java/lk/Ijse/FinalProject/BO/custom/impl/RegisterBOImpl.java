@@ -1,6 +1,7 @@
 package lk.Ijse.FinalProject.BO.custom.impl;
 
-import lk.Ijse.FinalProject.BO.Custom.RegisterBO;
+
+import lk.Ijse.FinalProject.BO.custom.RegisterBO;
 import lk.Ijse.FinalProject.dao.Custom.RegisterDAO;
 //import lk.Ijse.FinalProject.dao.impl.RegisterDAOImpl;
 import lk.Ijse.FinalProject.dao.DAOFactory;

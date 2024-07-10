@@ -12,9 +12,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.Ijse.FinalProject.BO.BOFactory;
-import lk.Ijse.FinalProject.BO.Custom.EmployeeBO;
+
 //import lk.Ijse.FinalProject.BO.Custom.impl.EmployeeBOImpl;
+import lk.Ijse.FinalProject.BO.custom.EmployeeBO;
 import lk.Ijse.FinalProject.BO.custom.impl.EmployeeBOImpl;
+import lk.Ijse.FinalProject.Util.CustomerRegex;
+import lk.Ijse.FinalProject.Util.CustomerTextField;
 import lk.Ijse.FinalProject.dto.EmployeeDTO;
 import lk.Ijse.FinalProject.tm.EmployeeTM;
 //import lk.Ijse.FinalProject.view.tm.EmployeeTM;
@@ -251,30 +254,30 @@ public class EmployeeFormController {
     @FXML
     void txtAddressOnKeyReleased(KeyEvent event) {
 
-       // CustomerRegex.setTextColor(CustomerTextField.ADDRESS,txtAddress);
+        CustomerRegex.setTextColor(CustomerTextField.ADDRESS,txtAddress);
     }
 
     @FXML
     void txtContactOnKeyReleased(KeyEvent event) {
 
-       // CustomerRegex.setTextColor(CustomerTextField.CONTACT,txtContact);
+       CustomerRegex.setTextColor(CustomerTextField.CONTACT,txtContact);
     }
 
     @FXML
     void txtEmailOnKeyReleased(KeyEvent event) {
 
-       // CustomerRegex.setTextColor(CustomerTextField.EMAIL,txtEmail);
+       CustomerRegex.setTextColor(CustomerTextField.EMAIL,txtEmail);
     }
 
     @FXML
     void txtIdOnKeyReleased(KeyEvent event) {
 
-       // CustomerRegex.setTextColor(CustomerTextField.ID,txtId);
+       CustomerRegex.setTextColor(CustomerTextField.ID,txtId);
     }
 
     @FXML
     void txtNameOnKeyReleased(KeyEvent event) {
-       // CustomerRegex.setTextColor(CustomerTextField.NAME,txtName);
+       CustomerRegex.setTextColor(CustomerTextField.NAME,txtName);
 
     }
 

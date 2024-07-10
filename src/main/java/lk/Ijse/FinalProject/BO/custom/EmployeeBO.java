@@ -1,22 +1,27 @@
-package lk.Ijse.FinalProject.BO.Custom;
+package lk.Ijse.FinalProject.BO.custom;
 
 import lk.Ijse.FinalProject.dto.EmployeeDTO;
+import lk.Ijse.FinalProject.entity.Employee;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface EmployeeBO {
-    public List<EmployeeDTO> getAllEmployee() throws SQLException, ClassNotFoundException;
+public interface EmployeeBO extends SalaryBO {
+    public List<Employee> getAllEmployee() throws SQLException, ClassNotFoundException;
 
 
     public boolean deleteEmployee(String id) throws SQLException, ClassNotFoundException ;
 
     public boolean saveEmployee(EmployeeDTO employeeDTO) throws SQLException, ClassNotFoundException ;
 
+    boolean saveEmployee(Employee employee) throws SQLException, ClassNotFoundException;
+
     public boolean updateEmployee(EmployeeDTO employeeDTO) throws SQLException, ClassNotFoundException ;
 
 
-    public EmployeeDTO searchByEmployeeId(String id) throws SQLException, ClassNotFoundException ;
+    boolean updateEmployee(Employee employee) throws SQLException, ClassNotFoundException;
+
+    public Employee searchByEmployeeId(String id) throws SQLException, ClassNotFoundException ;
 
     public  List<String> getEmployeeIds() throws SQLException, ClassNotFoundException ;
 }

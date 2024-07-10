@@ -12,13 +12,17 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.Ijse.FinalProject.BO.BOFactory;
-import lk.Ijse.FinalProject.BO.Custom.EmployeeBO;
+
 /*import lk.Ijse.FinalProject.BO.Custom.SalaryBO;
 import lk.Ijse.FinalProject.BO.Custom.impl.EmployeeBOImpl;
 import lk.Ijse.FinalProject.BO.Custom.impl.SalaryBOImpl;*/
+import lk.Ijse.FinalProject.BO.custom.EmployeeBO;
 import lk.Ijse.FinalProject.BO.custom.SalaryBO;
+import lk.Ijse.FinalProject.Util.CustomerRegex;
+import lk.Ijse.FinalProject.Util.CustomerTextField;
 import lk.Ijse.FinalProject.dto.EmployeeDTO;
 import lk.Ijse.FinalProject.dto.SalaryDTO;
+import lk.Ijse.FinalProject.entity.Salary;
 import lk.Ijse.FinalProject.tm.SalaryTM;
 //import lk.Ijse.FinalProject.view.tm.SalaryTM;
 
@@ -119,8 +123,8 @@ public class SalaryFormController {
         ObservableList<SalaryTM> obList = FXCollections.observableArrayList();
 
         try {
-            List<SalaryDTO> salaryList = salaryBO.getAllSalary();
-            for (SalaryDTO salary : salaryList){
+            List<Salary> salaryList = salaryBO.getAllSalary();
+            for (Salary salary : salaryList){
                 SalaryTM tm = new SalaryTM(
                         salary.getSalaryId(),
                         salary.getSalaryDate(),
@@ -225,7 +229,7 @@ public class SalaryFormController {
     void txtSearchOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String id = txtSalaryId.getText();
 
-        SalaryDTO salary = salaryBO.searchBySalaryId(id);
+        Salary salary = salaryBO.searchBySalaryId(id);
         if (salary != null) {
             txtSalaryId.setText(salary.getSalaryId());
             txtDate.setText(salary.getSalaryDate());
@@ -240,6 +244,6 @@ public class SalaryFormController {
 
     @FXML
     public void txtSalaryIdOnKeyRelesed(KeyEvent keyEvent) {
-       // CustomerRegex.setTextColor(CustomerTextField.ID,txtSalaryId);
+       CustomerRegex.setTextColor(CustomerTextField.ID,txtSalaryId);
     }
 }

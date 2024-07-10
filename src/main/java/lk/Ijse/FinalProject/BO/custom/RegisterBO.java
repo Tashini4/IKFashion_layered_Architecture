@@ -1,12 +1,13 @@
-package lk.Ijse.FinalProject.BO.Custom;
+package lk.Ijse.FinalProject.BO.custom;
 
+import lk.Ijse.FinalProject.BO.SuperBO;
 import lk.Ijse.FinalProject.dto.RegisterDTO;
 import lk.Ijse.FinalProject.entity.Register;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface RegisterBO {
+public interface RegisterBO extends SuperBO {
     public List<Register> getAllRegister() throws SQLException, ClassNotFoundException ;
 
 

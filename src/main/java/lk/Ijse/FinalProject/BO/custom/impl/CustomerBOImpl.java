@@ -1,8 +1,10 @@
 package lk.Ijse.FinalProject.BO.custom.impl;
 
+import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.custom.CustomerBO;
 import lk.Ijse.FinalProject.dao.Custom.CustomerDAO;
 import lk.Ijse.FinalProject.dao.Custom.impl.CustomerDAOImpl;
+import lk.Ijse.FinalProject.dao.DAOFactory;
 import lk.Ijse.FinalProject.dao.SQLUtil;
 import lk.Ijse.FinalProject.dto.CustomerDTO;
 import lk.Ijse.FinalProject.entity.Customer;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerBOImpl implements CustomerBO {
-    CustomerDAO customerDAO = new CustomerDAOImpl();
+    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
 
     @Override
     public List<CustomerDTO> getAllCustomer() throws SQLException, ClassNotFoundException {

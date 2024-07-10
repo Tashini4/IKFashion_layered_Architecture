@@ -6,7 +6,6 @@ import lk.Ijse.FinalProject.dto.ItemDTO;
 import lk.Ijse.FinalProject.dto.OrderDetailsDTO;
 
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

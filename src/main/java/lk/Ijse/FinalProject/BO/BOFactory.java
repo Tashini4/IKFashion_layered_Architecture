@@ -1,7 +1,7 @@
 package lk.Ijse.FinalProject.BO;
 
 import lk.Ijse.FinalProject.BO.custom.impl.*;
-
+import lk.Ijse.FinalProject.dao.CrudDAO;
 
 
 public class BOFactory {
@@ -16,7 +16,7 @@ public class BOFactory {
         CUSTOMER,ITEM,ORDER,INVENTORY,REGISTTER,SALARY,SUPPLIER,EMPLOYEE
     }
 
-    public  SuperBO getBO(BOType type){
+    public SuperBO getBO(BOType type){
         switch (type){
             case CUSTOMER :
                 return new CustomerBOImpl();
