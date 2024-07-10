@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.custom.CustomerBO;
 import lk.Ijse.FinalProject.BO.custom.impl.CustomerBOImpl;
+import lk.Ijse.FinalProject.Util.CustomerRegex;
+import lk.Ijse.FinalProject.Util.CustomerTextField;
 import lk.Ijse.FinalProject.dao.Custom.impl.CustomerDAOImpl;
 import lk.Ijse.FinalProject.dto.CustomerDTO;
 import lk.Ijse.FinalProject.tm.CustomerTM;
@@ -163,7 +165,7 @@ public class CustomerFormController {
         String contact = txtContact.getText();
         String address = txtAddress.getText();
         try {
-
+            if (isValied()){}
             boolean isSaved = customerBO.saveCustomer(new CustomerDTO(id, name, email, contact, address));
             if (isSaved) {
                 getCurrentCustomerId();
@@ -198,6 +200,17 @@ public class CustomerFormController {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
+    }
+    public boolean isValied(){
+        if (!CustomerRegex.setTextColor(CustomerTextField.ID,txtId))return false;
+        if (!CustomerRegex.setTextColor(CustomerTextField.NAME,txtName)) return false;
+        if (!CustomerRegex.setTextColor(CustomerTextField.EMAIL,txtEmail)) return false;
+        if (!CustomerRegex.setTextColor(CustomerTextField.CONTACT,txtContact)) return false;
+        if (!CustomerRegex.setTextColor(CustomerTextField.NAME,txtAddress)) return false;
+
+
+
+        return true;
     }
     @FXML
     void txtSearchOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
@@ -240,18 +253,33 @@ public class CustomerFormController {
         return "C001";
     }
 
-    public void txtNameOnKeyReleased(KeyEvent keyEvent) {
+    @FXML
+    void txtAddressOnKeyReleased(KeyEvent event) {
+
+        CustomerRegex.setTextColor(CustomerTextField.ADDRESS,txtAddress);
     }
 
-    public void txtEmailOnKeyReleased(KeyEvent keyEvent) {
+    @FXML
+    void txtContactOnKeyReleased(KeyEvent event) {
+
+        CustomerRegex.setTextColor(CustomerTextField.CONTACT,txtContact);
     }
 
-    public void txtContactOnKeyReleased(KeyEvent keyEvent) {
+    @FXML
+    void txtEmailOnKeyReleased(KeyEvent event) {
+
+        CustomerRegex.setTextColor(CustomerTextField.EMAIL,txtEmail);
     }
 
-    public void txtAddressOnKeyReleased(KeyEvent keyEvent) {
+    @FXML
+    void txtIdOnKeyReleased(KeyEvent event) {
+
+        CustomerRegex.setTextColor(CustomerTextField.ID,txtId);
     }
 
-    public void txtIdOnKeyReleased(KeyEvent keyEvent) {
+    @FXML
+    void txtNameOnKeyReleased(KeyEvent event) {
+        CustomerRegex.setTextColor(CustomerTextField.NAME,txtName);
+
     }
 }
