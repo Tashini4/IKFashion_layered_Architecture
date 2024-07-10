@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import lk.Ijse.FinalProject.dao.Custom.impl.SupplierDAOImpl;
 import lk.Ijse.FinalProject.dto.SupplierDTO;
+import lk.Ijse.FinalProject.entity.Supplier;
 import lk.Ijse.FinalProject.tm.SupplierTM;
 //import lk.Ijse.FinalProject.view.tm.SupplierTM;
 
@@ -82,8 +83,8 @@ public class SupplierFormController {
         ObservableList<SupplierTM> obList = FXCollections.observableArrayList();
 
         try {
-            List<SupplierDTO> supplierList = supplierDAO.getAll();
-            for (SupplierDTO supplier : supplierList) {
+            List<Supplier> supplierList = supplierDAO.getAll();
+            for (Supplier supplier : supplierList) {
                 SupplierTM tm = new SupplierTM(
                         supplier.getSupplierId(),
                         supplier.getSupplierName(),
@@ -162,7 +163,7 @@ public class SupplierFormController {
         //Supplier supplier = new Supplier(id, name, email , address,contact );
 
         try {
-            boolean Save = supplierDAO.save(new SupplierDTO(id,name,email,address,contact));
+            boolean Save = supplierDAO.save(new Supplier(id,name,email,address,contact));
             if (Save) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier saved!").show();
                 loadAllSupplier();
@@ -187,7 +188,7 @@ public class SupplierFormController {
         //Supplier supplier = new Supplier(id, name,email,address,contact);
 
         try {
-            boolean Update = supplierDAO.update(new SupplierDTO(id,name,email,address,contact));
+            boolean Update = supplierDAO.update(new Supplier(id,name,email,address,contact));
             if(Update) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier updated!").show();
                 loadAllSupplier();

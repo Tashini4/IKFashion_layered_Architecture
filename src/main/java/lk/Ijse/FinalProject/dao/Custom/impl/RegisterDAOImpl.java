@@ -38,13 +38,13 @@ public class RegisterDAOImpl implements RegisterDAO {
         return SQLUtil.execute("DELETE FROM register WHERE registerId = ?",id);
     }
     @Override
-    public boolean save(RegisterDTO registerDTO) throws SQLException, ClassNotFoundException {
+    public boolean save(Register registerDTO) throws SQLException, ClassNotFoundException {
 
         return SQLUtil.execute("INSERT INTO register (registerId, registerName, registerPosition, registerPassword) VALUES(?,?,?,?)",registerDTO.getRegisterId(),
                 registerDTO.getRegiterName(),registerDTO.getRegisterPosition(),registerDTO.getRegisterPosition());
     }
     @Override
-    public boolean update(RegisterDTO registerDTO) throws SQLException, ClassNotFoundException {
+    public boolean update(Register registerDTO) throws SQLException, ClassNotFoundException {
 
         return SQLUtil.execute("UPDATE register SET registerName = ?, registerPosition = ?, registerPassword = ? WHERE registerId = ?",registerDTO.getRegisterId(),registerDTO.getRegiterName(),
                 registerDTO.getRegisterPosition(),registerDTO.getRegisterPassword());

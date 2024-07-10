@@ -12,11 +12,13 @@ public interface ItemBO extends SalaryBO{
 
     boolean saveItem(Item item) throws SQLException, ClassNotFoundException;
 
-    public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException;
+    public ArrayList<Item> getAllItems() throws SQLException, ClassNotFoundException;
 
     public boolean deleteItem(String id) throws SQLException, ClassNotFoundException;
 
     public boolean updateItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
+
+    boolean updateItem(Item item) throws SQLException, ClassNotFoundException;
 
     public Item searchByItemId(String itemId) throws SQLException, ClassNotFoundException ;
 

@@ -32,12 +32,12 @@ public class RegisterBOImpl implements RegisterBO {
             }
 
             @Override
-            public boolean saveRegister (RegisterDTO registerDTO) throws SQLException, ClassNotFoundException {
+            public boolean saveRegister (Register registerDTO) throws SQLException, ClassNotFoundException {
                 return registerDAO.save(registerDTO);
             }
 
             @Override
-            public boolean updateRegister (RegisterDTO registerDTO) throws SQLException, ClassNotFoundException {
+            public boolean updateRegister (Register registerDTO) throws SQLException, ClassNotFoundException {
                 return registerDAO.update(registerDTO);
             }
 

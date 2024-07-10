@@ -3,6 +3,7 @@ package lk.Ijse.FinalProject.dao.Custom.impl;
 import lk.Ijse.FinalProject.dao.Custom.EmployeeDAO;
 import lk.Ijse.FinalProject.dao.SQLUtil;
 import lk.Ijse.FinalProject.dto.EmployeeDTO;
+import lk.Ijse.FinalProject.entity.Employee;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,13 +15,13 @@ import java.util.List;
 public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
 
-    public List<EmployeeDTO> getAll() throws SQLException, ClassNotFoundException {
+    public List<Employee> getAll() throws SQLException, ClassNotFoundException {
        /* String sql = "SELECT * FROM employees";
 
         PreparedStatement pvsm = DbConnection.getInstance().getConnection().prepareStatement(sql);*/
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM employees");
 
-        List<EmployeeDTO> employeeList = new ArrayList<>();
+        List<Employee> employeeList = new ArrayList<>();
 
         while (resultSet.next()) {
             String id = resultSet.getString(1);
@@ -30,7 +31,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             String address = resultSet.getString(5);
             String gender = resultSet.getNString(6);
 
-            EmployeeDTO employee = new EmployeeDTO(id, name, email, contact, address, gender);
+            Employee employee = new Employee(id, name, email, contact, address, gender);
             employeeList.add(employee);
         }
         return employeeList;
@@ -48,7 +49,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return SQLUtil.execute("DELETE FROM employees WHERE employeeId = ?", id);
     }
     @Override
-    public boolean save(EmployeeDTO employeeDTO) throws SQLException, ClassNotFoundException {
+    public boolean save(Employee employeeDTO) throws SQLException, ClassNotFoundException {
        /* String sql = "INSERT INTO employees VALUES(?, ?, ?, ? ,?,?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
@@ -66,7 +67,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 employeeDTO.getEmployeeName(), employeeDTO.getEmployeeEmail(), employeeDTO.getEmployeeContact(), employeeDTO.getEmployeeAddress(), employeeDTO.getEmployeeGender());
     }
     @Override
-    public boolean update(EmployeeDTO employeeDTO) throws SQLException, ClassNotFoundException {
+    public boolean update(Employee employeeDTO) throws SQLException, ClassNotFoundException {
        /* String sql = "UPDATE employees SET employeeName = ?, employeeAddress = ?, employeeContact = ? , employeeEmail = ? , employeeGender = ? WHERE employeeId = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
@@ -85,7 +86,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public EmployeeDTO searchById(String id) throws SQLException, ClassNotFoundException {
+    public Employee searchById(String id) throws SQLException, ClassNotFoundException {
         /*String sql = "SELECT * FROM employees WHERE employeeId = ?";
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pvsm = connection.prepareStatement(sql);
@@ -106,7 +107,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return null;*/
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM employees WHERE employeeId = ?", id);
         resultSet.next();
-        return new EmployeeDTO(id + "", resultSet.getString("Name"), resultSet.getString("Email"),
+        return new Employee(id + "", resultSet.getString("Name"), resultSet.getString("Email"),
                 resultSet.getString("Contact"), resultSet.getString("Address"), resultSet.getString("Gender"));
     }
     @Override

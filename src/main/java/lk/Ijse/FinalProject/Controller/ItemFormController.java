@@ -19,6 +19,8 @@ import lk.Ijse.FinalProject.Util.CustomerRegex;
 import lk.Ijse.FinalProject.Util.CustomerTextField;
 import lk.Ijse.FinalProject.dto.InventoryDTO;
 import lk.Ijse.FinalProject.dto.ItemDTO;
+import lk.Ijse.FinalProject.entity.Inventory;
+import lk.Ijse.FinalProject.entity.Item;
 import lk.Ijse.FinalProject.tm.ItemTM;
 
 
@@ -138,9 +140,9 @@ public class ItemFormController {
         tblItem.getItems().clear();
         try {
             /*Get all items*/
-            ArrayList<ItemDTO> itemList = itemBO.getAllItems();
+            ArrayList<Item> itemList = itemBO.getAllItems();
 
-            for (ItemDTO itemDTO : itemList){
+            for (Item itemDTO : itemList){
                 tblItem.getItems().add(new ItemTM(itemDTO.getItemId(),itemDTO.getDescription(),itemDTO.getBrand(),itemDTO.getSize(),itemDTO.getPrice(), itemDTO.getQtyOnHand(), itemDTO.getInventoryId()));
             }
 
@@ -249,7 +251,7 @@ public class ItemFormController {
     void cmbInventoryOnAction(ActionEvent event) {
         String inventoryId = cmbInventoryId.getValue();
         try {
-            InventoryDTO inventory = inventoryBO.searchByInventoryId(inventoryId);
+            Inventory inventory = inventoryBO.searchByInventoryId(inventoryId);
 
            cmbInventoryId.setValue(inventory.getInventoryId());
 
@@ -269,7 +271,7 @@ public class ItemFormController {
     void txtSearchOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String itemId = txtItemId.getText();
 
-        ItemDTO item = itemBO.searchByItemId(itemId);
+        Item item = itemBO.searchByItemId(itemId);
         if (item != null) {
             txtItemId.setText(item.getItemId());
             txtDescription.setText(item.getDescription());

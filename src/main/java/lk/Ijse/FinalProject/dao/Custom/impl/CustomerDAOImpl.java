@@ -12,10 +12,10 @@ import java.util.List;
 
 public class CustomerDAOImpl implements CustomerDAO {
     @Override
-    public List<CustomerDTO> getAll() throws SQLException, ClassNotFoundException {
+    public List<Customer> getAll() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM customers");
 
-        List<CustomerDTO> customerlist = new ArrayList<>();
+        List<Customer> customerlist = new ArrayList<>();
 
         while (resultSet.next()) {
             String id = resultSet.getString(1);
@@ -24,7 +24,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             String contact = resultSet.getString(4);
             String address = resultSet.getString(5);
 
-            CustomerDTO customer = new CustomerDTO(id, name, email, contact, address);
+            Customer customer = new Customer(id, name, email, contact, address);
             customerlist.add(customer);
         }
         return customerlist;
@@ -36,23 +36,23 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean save(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException {
+    public boolean save(Customer customerDTO) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("INSERT INTO customers VALUES(?, ?, ?, ? , ?)", customerDTO.getCustomerId(), customerDTO.getCustomerName(),
                 customerDTO.getCustomerEmail(), customerDTO.getCustomerContact(), customerDTO.getCustomerAddress());
     }
 
     @Override
-    public boolean update(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException {
+    public boolean update(Customer customerDTO) throws SQLException, ClassNotFoundException {
 
         return SQLUtil.execute("UPDATE customers SET customerName = ?, customerEmail = ?, customerContact = ? , customerAddress = ? WHERE customerId = ?",
                 customerDTO.getCustomerName(), customerDTO.getCustomerEmail(), customerDTO.getCustomerContact(), customerDTO.getCustomerAddress(), customerDTO.getCustomerId());
     }
 
     @Override
-    public CustomerDTO searchById(String id) throws SQLException, ClassNotFoundException {
+    public Customer searchById(String id) throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.execute("SELECT * FROM customers WHERE customerId = ?");
         rst.next();
-        return new CustomerDTO(id + "", rst.getString("Name"), rst.getString("Email"), rst.getString("Contact"),
+        return new Customer(id + "", rst.getString("Name"), rst.getString("Email"), rst.getString("Contact"),
                 rst.getString("Address"));
     }
 

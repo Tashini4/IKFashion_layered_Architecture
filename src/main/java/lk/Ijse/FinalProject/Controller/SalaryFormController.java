@@ -22,6 +22,7 @@ import lk.Ijse.FinalProject.Util.CustomerRegex;
 import lk.Ijse.FinalProject.Util.CustomerTextField;
 import lk.Ijse.FinalProject.dto.EmployeeDTO;
 import lk.Ijse.FinalProject.dto.SalaryDTO;
+import lk.Ijse.FinalProject.entity.Employee;
 import lk.Ijse.FinalProject.entity.Salary;
 import lk.Ijse.FinalProject.tm.SalaryTM;
 //import lk.Ijse.FinalProject.view.tm.SalaryTM;
@@ -216,7 +217,7 @@ public class SalaryFormController {
         String id = cmbEmployeeId.getValue();
 
         try {
-            EmployeeDTO employee = employeeBO.searchByEmployeeId(id);
+            Employee employee = employeeBO.searchByEmployeeId(id);
             cmbEmployeeId.setValue(employee.getEmployeeId());
         }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

@@ -8,16 +8,16 @@ import java.util.List;
 
 public interface CustomerBO extends SalaryBO{
 
-    public List<CustomerDTO> getAllCustomer() throws SQLException, ClassNotFoundException;
+    public List<Customer> getAllCustomer() throws SQLException, ClassNotFoundException;
 
     public boolean deleteCustomer(String id) throws SQLException, ClassNotFoundException ;
 
-    public boolean saveCustomer(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException ;
+    public boolean saveCustomer(Customer customerDTO) throws SQLException, ClassNotFoundException ;
 
-    public boolean updateCustomer(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException ;
+    public boolean updateCustomer(Customer customerDTO) throws SQLException, ClassNotFoundException ;
 
 
-    public CustomerDTO searchByCustomerId(String id) throws SQLException, ClassNotFoundException;
+    public Customer searchByCustomerId(String id) throws SQLException, ClassNotFoundException;
     public List<String> getIds() throws SQLException, ClassNotFoundException;
 
     public int getCustomer() throws SQLException, ClassNotFoundException ;

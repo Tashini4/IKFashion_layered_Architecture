@@ -19,6 +19,7 @@ import lk.Ijse.FinalProject.BO.custom.impl.EmployeeBOImpl;
 import lk.Ijse.FinalProject.Util.CustomerRegex;
 import lk.Ijse.FinalProject.Util.CustomerTextField;
 import lk.Ijse.FinalProject.dto.EmployeeDTO;
+import lk.Ijse.FinalProject.entity.Employee;
 import lk.Ijse.FinalProject.tm.EmployeeTM;
 //import lk.Ijse.FinalProject.view.tm.EmployeeTM;
 
@@ -124,9 +125,9 @@ public class EmployeeFormController {
     private void loadAllEmployee() {
         tblEmployee.getItems().clear();
         try {
-             List<EmployeeDTO> allEmployee =  employeeBO.getAllEmployee();
+             List<Employee> allEmployee =  employeeBO.getAllEmployee();
 
-             for (EmployeeDTO e : allEmployee){
+             for (Employee e : allEmployee){
                 tblEmployee.getItems().add(new EmployeeTM(e.getEmployeeId(),e.getEmployeeName(),e.getEmployeeEmail(),e.getEmployeeContact(),e.getEmployeeAddress(),e.getEmployeeGender()));
 
             }

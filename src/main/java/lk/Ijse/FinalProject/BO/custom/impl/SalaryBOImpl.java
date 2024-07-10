@@ -14,11 +14,11 @@ import java.util.List;
 public class SalaryBOImpl implements SalaryBO {
     SalaryDAO salaryDAO = (SalaryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.SALARY);
 
-    public boolean updateSalary(SalaryDTO salaryDTO) throws SQLException, ClassNotFoundException {
+    public boolean updateSalary(Salary salaryDTO) throws SQLException, ClassNotFoundException {
      return salaryDAO.update(salaryDTO);
 
     }
-    public boolean saveSalary(SalaryDTO salaryDTO) throws SQLException, ClassNotFoundException {
+    public boolean saveSalary(Salary salaryDTO) throws SQLException, ClassNotFoundException {
         return salaryDAO.save(salaryDTO);
     }
 

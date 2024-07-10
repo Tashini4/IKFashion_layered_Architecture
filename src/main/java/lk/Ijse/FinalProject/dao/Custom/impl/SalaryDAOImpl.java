@@ -12,13 +12,13 @@ import java.util.List;
 
 public class SalaryDAOImpl implements SalaryDAO {
     @Override
-    public boolean update(SalaryDTO salaryDTO) throws SQLException, ClassNotFoundException {
+    public boolean update(Salary salaryDTO) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("UPDATE salary SET salaryDate = ?, salaryAmount = ? ,employeeId = ? WHERE salaryId = ?", salaryDTO.getSalaryDate(), salaryDTO.getSalaryAmount(),
                 salaryDTO.getEmployeeId(), salaryDTO.getSalaryId());
 
     }
     @Override
-    public boolean save(SalaryDTO salaryDTO) throws SQLException, ClassNotFoundException {
+    public boolean save(Salary salaryDTO) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("INSERT INTO salary VALUES (?,?,?,?)", salaryDTO.getSalaryDate(), salaryDTO.getSalaryAmount(),
                 salaryDTO.getEmployeeId());
     }
@@ -41,15 +41,6 @@ public class SalaryDAOImpl implements SalaryDAO {
         return salaryList;
     }
 
-    @Override
-    public boolean save(Salary customerDTO) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public boolean update(Salary customerDTO) throws SQLException, ClassNotFoundException {
-        return false;
-    }
 
     @Override
     public Salary searchById(String id) throws SQLException, ClassNotFoundException {
@@ -58,8 +49,5 @@ public class SalaryDAOImpl implements SalaryDAO {
         return new Salary(id + "", rst.getString("Date"), rst.getString("Amount"), rst.getString("EmployeeId"));
     }
 
-    @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
-        return false;
-    }
+
 }

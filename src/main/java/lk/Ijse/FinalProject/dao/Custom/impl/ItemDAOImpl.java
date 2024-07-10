@@ -4,6 +4,7 @@ import lk.Ijse.FinalProject.dao.Custom.ItemDAO;
 import lk.Ijse.FinalProject.dao.SQLUtil;
 import lk.Ijse.FinalProject.dto.ItemDTO;
 import lk.Ijse.FinalProject.dto.OrderDetailsDTO;
+import lk.Ijse.FinalProject.entity.Item;
 
 
 import java.sql.ResultSet;
@@ -20,13 +21,13 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
+    public ArrayList<Item> getAllItems() throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.execute("SELECT * FROM items");
 
-        ArrayList<ItemDTO> allItems = new ArrayList<>();
+        ArrayList<Item> allItems = new ArrayList<>();
 
         while (rst.next()) {
-            allItems.add(new ItemDTO(
+            allItems.add(new Item(
                     rst.getString(1),
                     rst.getString(2),
                     rst.getString(3),
@@ -55,10 +56,10 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public ItemDTO searchById(String itemId) throws SQLException, ClassNotFoundException {
+    public Item searchById(String itemId) throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.execute("SELECT * FROM items WHERE id=?", itemId);
         rst.next();
-        return new ItemDTO(itemId + "", rst.getString("Description"),
+        return new Item(itemId + "", rst.getString("Description"),
                 rst.getString("Brand"), rst.getString("Size"), rst.getDouble("Price"), rst.getInt("QtyOnHand"), rst.getString("InventoryId"));
 
     }

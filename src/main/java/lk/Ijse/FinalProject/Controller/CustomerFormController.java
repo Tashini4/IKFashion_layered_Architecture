@@ -22,6 +22,7 @@ import lk.Ijse.FinalProject.Util.CustomerRegex;
 import lk.Ijse.FinalProject.Util.CustomerTextField;
 import lk.Ijse.FinalProject.dao.Custom.impl.CustomerDAOImpl;
 import lk.Ijse.FinalProject.dto.CustomerDTO;
+import lk.Ijse.FinalProject.entity.Customer;
 import lk.Ijse.FinalProject.tm.CustomerTM;
 //import lk.Ijse.FinalProject.view.tm.CustomerTM;
 
@@ -91,8 +92,8 @@ public class CustomerFormController {
         ObservableList<CustomerTM> obList = FXCollections.observableArrayList();
 
         try {
-         List<CustomerDTO> customerList = customerBO.getAllCustomer();
-            for (CustomerDTO c : customerList) {
+         List<Customer> customerList = customerBO.getAllCustomer();
+            for (Customer c : customerList) {
                 CustomerTM tm = new CustomerTM(
                         c.getCustomerId(),
                         c.getCustomerName(),
@@ -166,7 +167,7 @@ public class CustomerFormController {
         String address = txtAddress.getText();
         try {
             if (isValied()){}
-            boolean isSaved = customerBO.saveCustomer(new CustomerDTO(id, name, email, contact, address));
+            boolean isSaved = customerBO.saveCustomer(new Customer(id, name, email, contact, address));
             if (isSaved) {
                 getCurrentCustomerId();
                 new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
@@ -189,7 +190,7 @@ public class CustomerFormController {
         String address = txtAddress.getText();
 
         try {
-            boolean isUpdated = customerBO.updateCustomer(new CustomerDTO(id, name, email, contact, address));
+            boolean isUpdated = customerBO.updateCustomer(new Customer(id, name, email, contact, address));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
                 loadAllCustomer();
@@ -217,7 +218,7 @@ public class CustomerFormController {
         String id = txtId.getText();
     try {
 
-        CustomerDTO customer = customerBO.searchByCustomerId(id);
+        Customer customer = customerBO.searchByCustomerId(id);
         if (customer != null) {
             txtId.setText(customer.getCustomerId());
             txtName.setText(customer.getCustomerName());
