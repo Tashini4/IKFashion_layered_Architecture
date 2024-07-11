@@ -23,7 +23,7 @@ public class BOFactory {
             case ITEM:
                 return new ItemBOImpl();
             case ORDER:
-                return new OrderBOImpl();
+                return (SuperBO) new OrderBOImpl();
             case INVENTORY:
                 return new InventoryBOImpl();
             case REGISTTER:
