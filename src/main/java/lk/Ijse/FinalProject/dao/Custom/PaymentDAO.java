@@ -18,4 +18,5 @@ public interface PaymentDAO extends CrudDAO<Payment> {
     public List<Payment> getAll() throws SQLException, ClassNotFoundException ;
     public  List<String> getIds() throws SQLException, ClassNotFoundException ;
 
+
 }

@@ -19,8 +19,10 @@ import javafx.stage.Stage;
 import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.custom.CustomerBO;
 import lk.Ijse.FinalProject.BO.custom.ItemBO;
+import lk.Ijse.FinalProject.dao.Custom.OrderDetailsDAO;
 import lk.Ijse.FinalProject.dao.Custom.PaymentDAO;
 import lk.Ijse.FinalProject.dao.Custom.impl.OrderDAOImpl;
+import lk.Ijse.FinalProject.dao.Custom.impl.OrderDetailsDAOImpl;
 import lk.Ijse.FinalProject.dao.Custom.impl.PaymentDAOImpl;
 import lk.Ijse.FinalProject.db.DbConnection;
 import lk.Ijse.FinalProject.dto.OrderDTO;
@@ -139,6 +141,7 @@ public class OrderFormController {
     CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.CUSTOMER);
     ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ITEM);
 
+    OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
     PaymentDAO paymentDAO = new PaymentDAOImpl();
 
 
