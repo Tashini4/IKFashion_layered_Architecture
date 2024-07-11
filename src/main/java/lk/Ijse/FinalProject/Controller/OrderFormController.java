@@ -392,8 +392,7 @@ public class OrderFormController {
         PaymentDTO payment = new PaymentDTO(paymentId, amount, date);
         PlaceOrderDTO po = new PlaceOrderDTO(order, odList, payment);
 
-        try {
-            boolean isPlaced = placeOrder.placeOrder(po);
+            boolean isPlaced = PlaceOrder.placeOrder(po);
 
             if (isPlaced) {
                 obList.clear();
@@ -414,10 +413,8 @@ public class OrderFormController {
             } else {
                 new Alert(Alert.AlertType.WARNING, "Order Placed Unsucessfully!").show();
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+
         }
-    }
     @FXML
     void txtDiscountOnAction(ActionEvent event) {
         discount = Double.parseDouble(txtDiscount.getText()) / 100; // Get discount from the TextField
