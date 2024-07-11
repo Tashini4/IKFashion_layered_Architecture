@@ -18,7 +18,7 @@ public class DAOFactory {
         CUSTOMER, ITEM, ORDER, INVENTORY, REGISTTER, SALARY, SUPPLIER,EMPLOYEE,ORDERDETAILS
     }
 
-    public CrudDAO getDAO(DAOTypes types) {
+    public SuperDAO getDAO(DAOTypes types) {
         switch (types) {
             case CUSTOMER:
                 return new CustomerDAOImpl();

@@ -15,12 +15,21 @@ public class OrderDetailsBOImpl implements OrderDetailsBO {
     OrderDetailsDAO orderDetailsDAO = (OrderDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDERDETAILS);
 
     @Override
-    public boolean save(List<OrderDetails> odList) throws SQLException, ClassNotFoundException {
-        return orderDetailsDAO.save(odList);
+    public boolean save(List<OrderDetailsDTO> odList) throws SQLException, ClassNotFoundException {
+        for (OrderDetailsDTO od : odList){
+            boolean isSaved = saveOrderDetail(od);
+            if (!isSaved){
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
-    public boolean saveOrderDetail(OrderDetails od) throws SQLException, ClassNotFoundException {
-        return orderDetailsDAO.saveOrderDetail(od);
+    public boolean saveOrderDetail(OrderDetailsDTO od) throws SQLException, ClassNotFoundException {
+        return orderDetailsDAO.saveOrderDetail(new OrderDetails(od.getItemId(),od.getOrderId(),
+                od.getQty(),od.getUnitPrice(),od.getTotal()));
     }
+
+
 }

@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface OrderDetailsBO extends SuperBO {
 
-    public boolean save(List<OrderDetails> odList) throws SQLException, ClassNotFoundException;
+    public boolean save(List<OrderDetailsDTO> odList) throws SQLException, ClassNotFoundException;
 
 
-    public boolean saveOrderDetail(OrderDetails od) throws SQLException, ClassNotFoundException ;
+    public boolean saveOrderDetail(OrderDetailsDTO od) throws SQLException, ClassNotFoundException ;
 }
