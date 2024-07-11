@@ -15,7 +15,7 @@ public class DAOFactory {
     }
 
     public enum DAOTypes {
-        CUSTOMER, ITEM, ORDER, INVENTORY, REGISTTER, SALARY, SUPPLIER,EMPLOYEE
+        CUSTOMER, ITEM, ORDER, INVENTORY, REGISTTER, SALARY, SUPPLIER,EMPLOYEE,ORDERDETAILS
     }
 
     public CrudDAO getDAO(DAOTypes types) {
@@ -36,6 +36,8 @@ public class DAOFactory {
                 return new SalaryDAOImpl();
             case EMPLOYEE:
                 return new EmployeeDAOImpl();
+            case ORDERDETAILS:
+                return new OrderDetailsDAOImpl();
             default:
                 return null;
         }

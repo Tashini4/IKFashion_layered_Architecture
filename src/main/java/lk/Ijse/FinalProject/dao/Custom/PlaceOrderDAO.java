@@ -1,6 +1,8 @@
 package lk.Ijse.FinalProject.dao.Custom;
 
 import javafx.scene.control.Alert;
+import lk.Ijse.FinalProject.BO.custom.OrderDetailsBO;
+import lk.Ijse.FinalProject.BO.custom.impl.OrderDetailsBOImpl;
 import lk.Ijse.FinalProject.dao.Custom.impl.ItemDAOImpl;
 import lk.Ijse.FinalProject.dao.Custom.impl.OrderDAOImpl;
 import lk.Ijse.FinalProject.dao.Custom.impl.OrderDetailsDAOImpl;
@@ -19,7 +21,8 @@ public class PlaceOrderDAO {
         PaymentDAO paymentDAO = new PaymentDAOImpl();
         OrderDAO orderDAO = new OrderDAOImpl();
         ItemDAO  itemDAO = new ItemDAOImpl();
-        OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
+        OrderDetailsBO orderDetailsBO = new OrderDetailsBOImpl();
+
 
 
         Connection connection = DbConnection.getDbConnection().getConnection();
@@ -30,9 +33,9 @@ public class PlaceOrderDAO {
             if (isPaymentUpdated) {
                 boolean isOrderSaved = orderDAO.save(po.getOrder());
                 if (isOrderSaved) {
-                    boolean isQtyUpdated = (itemDAO).update1(po.getOdList());
+                    boolean isQtyUpdated = itemDAO.update1(po.getOdList());
                     if (isQtyUpdated) {
-                        boolean isOrderItemSaved = orderDetailsDAO.save(po.getOdList());
+                        boolean isOrderItemSaved = orderDetailsBO.save(po.getOdList());
                         if (isOrderItemSaved) {
 
                             connection.commit();

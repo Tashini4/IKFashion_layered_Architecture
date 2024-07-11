@@ -19,8 +19,11 @@ import javafx.stage.Stage;
 import lk.Ijse.FinalProject.BO.BOFactory;
 import lk.Ijse.FinalProject.BO.custom.CustomerBO;
 import lk.Ijse.FinalProject.BO.custom.ItemBO;
+import lk.Ijse.FinalProject.Util.CustomerRegex;
+import lk.Ijse.FinalProject.Util.CustomerTextField;
 import lk.Ijse.FinalProject.dao.Custom.OrderDetailsDAO;
 import lk.Ijse.FinalProject.dao.Custom.PaymentDAO;
+import lk.Ijse.FinalProject.dao.Custom.PlaceOrderDAO;
 import lk.Ijse.FinalProject.dao.Custom.impl.OrderDAOImpl;
 import lk.Ijse.FinalProject.dao.Custom.impl.OrderDetailsDAOImpl;
 import lk.Ijse.FinalProject.dao.Custom.impl.PaymentDAOImpl;
@@ -141,7 +144,7 @@ public class OrderFormController {
     CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.CUSTOMER);
     ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ITEM);
 
-    OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
+    OrderDetailsDAO orderDetailsDAO = (OrderDetailsDAO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ORDERDETAILS);
     PaymentDAO paymentDAO = new PaymentDAOImpl();
 
 
@@ -227,28 +230,23 @@ public class OrderFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList =  customerBO.getIds();
-
-            for (String id : idList){
-                obList.add(id);
-            }
+            List<String> idList = customerBO.getIds();
+            obList.addAll(idList);
             cmbCustomerId.setItems(obList);
-        }catch(SQLException e){
-            throw new RuntimeException();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            }catch(SQLException e){
+                throw new RuntimeException();
+            } catch(ClassNotFoundException e){
+                throw new RuntimeException(e);
+            }
         }
-    }
+
 
     private void getItemIds() {
         ObservableList<String>  obList = FXCollections.observableArrayList();
         try {
 
             List<String> idList =  itemBO.getItemIds();
-
-            for (String id : idList){
-                obList.add(id);
-            }
+            obList.addAll(idList);
             cmbItemId.setItems(obList);
         }catch (SQLException e){
             showAlert(Alert.AlertType.ERROR, "Error occurred while fetching Items IDs: " + e.getMessage());
@@ -382,7 +380,7 @@ public class OrderFormController {
 
         for (int i = 0; i < tblPlaceOrder.getItems().size(); i++) {
             CartTM tm = obList.get(i);
-            OrderDetailsDTO od= new OrderDetailsDTO(
+            OrderDetailsDTO od = new OrderDetailsDTO(
                     tm.getItemId(),
                     orderId,
                     tm.getQty(),
@@ -391,30 +389,33 @@ public class OrderFormController {
             );
             odList.add(od);
         }
-        PaymentDTO payment = new PaymentDTO(paymentId,amount,date);
-        PlaceOrderDTO po = new PlaceOrderDTO(order,odList,payment);
+        PaymentDTO payment = new PaymentDTO(paymentId, amount, date);
+        PlaceOrderDTO po = new PlaceOrderDTO(order, odList, payment);
 
+        try {
+            boolean isPlaced = placeOrder.placeOrder(po);
 
-        boolean isPlaced = placeOrder.placeOrder(po);
+            if (isPlaced) {
+                obList.clear();
+                tblPlaceOrder.setItems(obList);
+                lblOrderId.setText("");
+                lblPaymentId.setText("");
+                lblPaymentAmount.setText("");
+                lblDescription.setText("");
+                lblUnitPrice.setText("");
+                lblQtyOnHand.setText("");
+                txtQty.clear();
+                txtCash.clear();
+                lblBalance.setText("");
+                getCurrentOrderId();
+                getCurrentPaymentId();
 
-        if (isPlaced){
-            obList.clear();
-            tblPlaceOrder.setItems(obList);
-            lblOrderId.setText("");
-            lblPaymentId.setText("");
-            lblPaymentAmount.setText("");
-            lblDescription.setText("");
-            lblUnitPrice.setText("");
-            lblQtyOnHand.setText("");
-            txtQty.clear();
-            txtCash.clear();
-            lblBalance.setText("");
-            getCurrentOrderId();
-            getCurrentPaymentId();
-
-            new Alert(Alert.AlertType.CONFIRMATION,"Order Placed!").show();
-        }else{
-            new Alert(Alert.AlertType.WARNING,"Order Placed Unsucessfully!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Order Placed Unsucessfully!").show();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
     @FXML
@@ -547,7 +548,7 @@ public class OrderFormController {
         @FXML
     void txtQtyOnKeyReleased(KeyEvent event) {
 
-        //CustomerRegex.setTextColor(CustomerTextField.NUMBER,txtQty);
+        CustomerRegex.setTextColor(CustomerTextField.NUMBER,txtQty);
     }
 
 
@@ -555,3 +556,4 @@ public class OrderFormController {
         calculateBalance();
     }
 }
+
