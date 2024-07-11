@@ -1,6 +1,9 @@
 package lk.Ijse.FinalProject.BO.custom;
 
 import javafx.scene.control.Alert;
+import lk.Ijse.FinalProject.BO.custom.impl.ItemBOImpl;
+import lk.Ijse.FinalProject.BO.custom.impl.OrderBOImpl;
+import lk.Ijse.FinalProject.BO.custom.impl.PaymentBOImpl;
 import lk.Ijse.FinalProject.dao.Custom.ItemDAO;
 import lk.Ijse.FinalProject.dao.Custom.OrderDAO;
 import lk.Ijse.FinalProject.dao.Custom.OrderDetailsDAO;
@@ -17,9 +20,9 @@ import java.sql.SQLException;
 
 public interface PlaceOrderBO {
     public static boolean placeOrder(PlaceOrderDTO po) throws SQLException {
-        PaymentDAO paymentDAO = new PaymentDAOImpl();
-        OrderDAO orderDAO = new OrderDAOImpl();
-        ItemDAO itemDAO = new ItemDAOImpl();
+        PaymentBO paymentBO = new PaymentBOImpl();
+        OrderBO orderBO = new OrderBOImpl();
+        ItemBO itemBO = new ItemBOImpl();
         OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
 
 
@@ -27,11 +30,11 @@ public interface PlaceOrderBO {
         connection.setAutoCommit(false);
 
         try {
-            boolean isPaymentUpdated = paymentDAO.save(po.getPayment());
+            boolean isPaymentUpdated = paymentBO.save(po.getPayment());
             if (isPaymentUpdated) {
-                boolean isOrderSaved = orderDAO.save(po.getOrder());
+                boolean isOrderSaved =  orderBO.save(po.getOrder());
                 if (isOrderSaved) {
-                    boolean isQtyUpdated = (itemDAO).update1(po.getOdList());
+                    boolean isQtyUpdated = itemBO.update1(po.getOdList());
                     if (isQtyUpdated) {
                         boolean isOrderItemSaved = orderDetailsDAO.save(po.getOdList());
                         if (isOrderItemSaved) {
