@@ -1,6 +1,9 @@
 package lk.Ijse.FinalProject.bo;
 
 
+import lk.Ijse.FinalProject.dto.EmployeeDTO;
+import lk.Ijse.FinalProject.entity.Employee;
+
 import java.sql.SQLException;
 import java.util.List;
 
