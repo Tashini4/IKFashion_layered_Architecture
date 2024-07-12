@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 public class SalaryDTO {
     private String salaryId;
     private String salaryDate;
     private String salaryAmount;
     private  String employeeId;
+
 }

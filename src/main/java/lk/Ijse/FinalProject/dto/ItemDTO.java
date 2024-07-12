@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 public class ItemDTO {
     private String itemId;
     private String description;
@@ -17,4 +16,3 @@ public class ItemDTO {
     private int qtyOnHand;
     private String inventoryId;
 }
-

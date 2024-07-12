@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 public class Customer {
     private String customerId;
     private String customerName;
@@ -15,3 +14,5 @@ public class Customer {
     private String customerContact;
     private String customerAddress;
 }
+
+

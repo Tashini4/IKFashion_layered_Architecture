@@ -1,16 +1,12 @@
 package lk.Ijse.FinalProject.db;
 
-import net.sf.jasperreports.engine.JRDataSource;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-
 import java.sql.SQLException;
 
 public class DbConnection {
     private static DbConnection dbConnection;
     private static Connection connection;
-
 
     private DbConnection() throws SQLException {
         connection = DriverManager.getConnection(
@@ -20,17 +16,14 @@ public class DbConnection {
         );
     }
 
-    public static DbConnection getDbConnection() throws SQLException {
-        return dbConnection == null ? dbConnection= new DbConnection() : dbConnection;
+    public static DbConnection getInstance() throws SQLException {
+        if(dbConnection == null) {
+            dbConnection = new DbConnection();
+        }
+        return dbConnection;
     }
 
     public static Connection getConnection() {
         return connection;
     }
 }
-
-
-
-
-
-

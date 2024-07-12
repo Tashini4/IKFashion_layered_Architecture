@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 public class RegisterDTO {
     private String registerId;
 
@@ -16,4 +15,7 @@ public class RegisterDTO {
     private String registerPosition;
 
     private String registerPassword;
+
+
 }
+
