@@ -1,9 +1,10 @@
 package lk.Ijse.FinalProject.bo;
 
-import lk.ijse.dao.DAOFactory;
-import lk.ijse.dao.custom.EmployeeDAO;
-import lk.ijse.dto.EmployeeDTO;
-import lk.ijse.entity.Employee;
+
+import lk.Ijse.FinalProject.dao.DAOFactory;
+import lk.Ijse.FinalProject.dao.EmployeeDAO;
+import lk.Ijse.FinalProject.dto.EmployeeDTO;
+import lk.Ijse.FinalProject.entity.Employee;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

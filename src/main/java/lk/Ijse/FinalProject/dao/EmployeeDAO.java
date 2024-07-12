@@ -1,6 +1,5 @@
 package lk.Ijse.FinalProject.dao;
 
-import lk.ijse.entity.Employee;
 
 import java.sql.SQLException;
 import java.util.List;
